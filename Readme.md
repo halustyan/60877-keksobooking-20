@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг» [![Build status][travis-image]][travis-url]
 
 * Студент: [Максим  Березинец](https://up.htmlacademy.ru/javascript/20/user/60877).
-* Наставник: `Неизвестно`.
+* Наставник: `Анатолий Пазюк`.
 
 ---
 
