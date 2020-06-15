@@ -150,45 +150,76 @@ var renderCard = function (obj) {
   var createListFeaturesElement = function  () {
     for (var i = 0; i < features.length; i++) {
 
-if (features[i]!=='conditioner') {
-  newCardElement.querySelector('.popup__feature--conditioner').style.display = "none";
+      switch (features[i]) {
+        case 'conditioner':
+          newCardElement.querySelector('.popup__feature--conditioner').style.display = "inline-block";
+          break;
+        case 'washer':
+          newCardElement.querySelector('.popup__feature--washer').style.display = "inline-block";
+          break;
+          case 'wifi':
+            newCardElement.querySelector('.popup__feature--wifi').style.display = "inline-block";
+            break;
+            case 'dishwasher':
+              newCardElement.querySelector('.popup__feature--dishwasher').style.display = "inline-block";
+            break;
+            case 'parking':
+              newCardElement.querySelector('.popup__feature--parking').style.display ="inline-block";
+            break;
+            case 'elevator':
+              newCardElement.querySelector('.popup__feature--elevator').style.display = "inline-block";
+            break;
+        default:
+          newCardElement.querySelector('.popup__feature').style.display = "none";
+      }
+/*
+if (features[i]=='conditioner') {
+  newCardElement.querySelector('.popup__feature--conditioner').style.display = "inline-block";
 }
 
-
-if(features[i]!=='washer') {
-  newCardElement.querySelector('.popup__feature--washer').style.display = "none";
+if(features[i]=='washer') {
+  newCardElement.querySelector('.popup__feature--washer').style.display = "inline-block";
 }
 
-if(features[i]!=='wifi') {
-  newCardElement.querySelector('.popup__feature--wifi').style.display = "none";
+if(features[i]=='wifi') {
+  newCardElement.querySelector('.popup__feature--wifi').style.display = "inline-block";
 }
 
-if(features[i]!=='dishwasher') {
-  newCardElement.querySelector('.popup__feature--dishwasher').style.display = "none";
+if(features[i]=='dishwasher') {
+  newCardElement.querySelector('.popup__feature--dishwasher').style.display = "inline-block";
 }
 
-if(features[i]!=='parking') {
-  newCardElement.querySelector('.popup__feature--parking').style.display = "none";
+if(features[i]=='parking') {
+  newCardElement.querySelector('.popup__feature--parking').style.display ="inline-block";
 }
 
-if(features[i]!=='elevator') {
-  newCardElement.querySelector('.popup__feature--elevator').style.display = "none";
+if(features[i]=='elevator') {
+  newCardElement.querySelector('.popup__feature--elevator').style.display = "inline-block";
 }
+
+else {
+  newCardElement.querySelector('.popup__feature').style.display = "none";
+}*/
 
     }
   }
-  createListFeaturesElement(features);
+  createListFeaturesElement();
 
 
-var popupPhotos = document.querySelector('.popup__photos');
+
+var insertPhotoOnPage = function () {
+  var popupPhotos = document.querySelector('.popup__photos');
 
 for (var i = 0; i<photos.length; i++) {
   var popupPhotosImg = document.createElement('img');
   popupPhotosImg.src=photos[i];
-  popupPhotosImg.style.width = '100%';
+  popupPhotosImg.style.width = '70px';
+  popupPhotosImg.style.height = '70px';
+  popupPhotosImg.style.padding = '5px';
   popupPhotos.appendChild(popupPhotosImg);
 }
-
+}
+insertPhotoOnPage();
 
 
 
