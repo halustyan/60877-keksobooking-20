@@ -128,16 +128,16 @@ photoElement.innerHTML = '';
 var fragmentPhoto = document.createDocumentFragment();
 
 var renderCard = function (obj) {
-    newCardElement.querySelector('.popup__title').textContent = obj.offer.title;
-    newCardElement.querySelector('.popup__text--address').textContent = obj.offer.address;
-    newCardElement.querySelector('.popup__text--price').textContent = obj.offer.price + '₽/ночь';
-    newCardElement.querySelector('.popup__type').textContent = obj.offer.type;
-    newCardElement.querySelector('.popup__text--capacity').textContent = obj.offer.rooms + ' комнаты для ' + obj.offer.guests + ' гостей';
-    newCardElement.querySelector('.popup__text--time').textContent = 'Заезд после ' + obj.offer.checkin + ', выезд до ' + obj.offer.checkout;
-    newCardElement.querySelector('.popup__description').textContent = obj.offer.description;
-    newCardElement.querySelector('.popup__avatar').src = obj.author.avatar;
+  newCardElement.querySelector('.popup__title').textContent = obj.offer.title;
+  newCardElement.querySelector('.popup__text--address').textContent = obj.offer.address;
+  newCardElement.querySelector('.popup__text--price').textContent = obj.offer.price + '₽/ночь';
+  newCardElement.querySelector('.popup__type').textContent = obj.offer.type;
+  newCardElement.querySelector('.popup__text--capacity').textContent = obj.offer.rooms + ' комнаты для ' + obj.offer.guests + ' гостей';
+  newCardElement.querySelector('.popup__text--time').textContent = 'Заезд после ' + obj.offer.checkin + ', выезд до ' + obj.offer.checkout;
+  newCardElement.querySelector('.popup__description').textContent = obj.offer.description;
+  newCardElement.querySelector('.popup__avatar').src = obj.author.avatar;
 
-var features = obj.offer.features;
+  var features = obj.offer.features;
 
   var createListFeaturesElement = function () {
     for (var f = 0; f < features.length; f++) {
@@ -194,15 +194,16 @@ renderCard(cardObject);
 
 // module4-task2
 
-var mapPin= document.querySelector('.map__pin');
+var mapPin = document.querySelector('.map__pin');
 
 mapPin.onmousedown = function (event) {
+
   event.preventDefault();
-  if (event.which == 1){
-    if (event.which == 2) {
-      map.classList.remove('map--faded');
-    }
+
+  if (event.which === 1) {
+
+    map.classList.remove('map--faded');
 
   }
 
-}
+};
