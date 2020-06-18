@@ -1,9 +1,6 @@
-
 'use strict';
 var arr = [];
 var map = document.querySelector('.map');
-
-
 
 function randomInteger(min, max) {
   var rand = min - 0.5 + Math.random() * (max - min + 1);
@@ -119,27 +116,22 @@ var renderCard = function (obj) {
   newCardElement.querySelector('.popup__description').textContent = obj.offer.description;
   newCardElement.querySelector('.popup__avatar').src = obj.author.avatar;
 
+  var fragmentCard = document.createDocumentFragment();
+  fragmentCard.appendChild(newCardElement);
 
+  map.appendChild(fragmentCard);
 
+  var photoElement = document.querySelector('.popup__photos');
 
+  var photoArray = cardObject.offer.photos;
 
+  var photoTemplate = document.querySelector('#card')
+    .content
+    .querySelector('.popup__photo');
 
-var fragmentCard = document.createDocumentFragment();
-fragmentCard.appendChild(newCardElement);
+  photoElement.innerHTML = '';
 
-map.appendChild(fragmentCard);
-
-var photoElement = document.querySelector('.popup__photos');
-
-var photoArray = cardObject.offer.photos;
-
-var photoTemplate = document.querySelector('#card')
-  .content
-  .querySelector('.popup__photo');
-
-photoElement.innerHTML = '';
-
-var fragmentPhoto = document.createDocumentFragment();
+  var fragmentPhoto = document.createDocumentFragment();
 
   var features = obj.offer.features;
 
@@ -195,39 +187,38 @@ var fragmentPhoto = document.createDocumentFragment();
   photoElement.appendChild(fragmentPhoto);
 };
 
-
 // module4-task2
 
 var adFormInputs = document.querySelectorAll('.ad-form input');
 var adFormSelects = document.querySelectorAll('.ad-form select');
 var adFormTextarea = document.querySelectorAll('.ad-form textarea');
 
-var mapFilters = document.querySelector('.map__filters select');
+var mapFiltersSelect = document.querySelector('.map__filters select');
 
 
-function disabledFunction (arr1, arr2, arr3, arr4) {
+function disabledFunction(arr1, arr2, arr3, arr4) {
   for (var z = 0; g < arr1.length; z++) {
-    arr1[z].setAttribute("disabled", "disabled");
+    arr1[z].setAttribute('disabled', 'disabled');
   }
 
   for (var m = 0; m < arr2.length; m++) {
-    arr2[m].setAttribute("disabled", "disabled");
+    arr2[m].setAttribute('disabled', 'disabled');
   }
 
   for (var g = 0; g < arr3.length; g++) {
-    arr3[g].setAttribute("disabled", "disabled");
+    arr3[g].setAttribute('disabled', 'disabled');
   }
 
-  for (var e =0; e<arr4.length; e++) {
-    arr4[e].setAttribute("disabled", "disabled");
+  for (var e = 0; e < arr4.length; e++) {
+    arr4[e].setAttribute('disabled', 'disabled');
   }
   return true;
 }
 
-disabledFunction (mapFilters, adFormTextarea, adFormInputs, adFormSelects);
+disabledFunction(mapFiltersSelect, adFormTextarea, adFormInputs, adFormSelects);
 
 var mapPin = document.querySelector('.map__pin--main');
-var adForm = document.querySelector ('.ad-form');
+var adForm = document.querySelector('.ad-form');
 
 var renderPin = function (objectElArray) {
   for (var b = 0; b < objectElArray.length; b++) {
@@ -235,99 +226,84 @@ var renderPin = function (objectElArray) {
     pinField.appendChild(fragment);
   }
   return true;
-}
+};
 
-
-
-mapPin.style.left = "570px";
-mapPin.style.top = "375px";
+mapPin.style.left = '570px';
+mapPin.style.top = '375px';
 mapPin.onmousedown = function (evt) {
   renderCard(cardObject);
 
   renderPin(ElObjectArray);
 
-
-
   if (evt.which === 1) {
 
-      map.classList.remove('map--faded');
-      adForm.classList.remove('ad-form--disabled');
-   }
+    map.classList.remove('map--faded');
+    adForm.classList.remove('ad-form--disabled');
+  }
 
+  for (var g = 0; g < adFormInputs.length; g++) {
+    adFormInputs[g].removeAttribute('disabled');
+  }
 
-for (var g = 0; g < adFormInputs.length; g++) {
-  adFormInputs[g].removeAttribute("disabled");
-}
+  for (var e = 0; e < adFormSelects.length; e++) {
+    adFormSelects[e].removeAttribute('disabled');
+  }
 
-for (var e =0; e<adFormSelects.length; e++) {
-  adFormSelects[e].removeAttribute("disabled");
-}
-
-for (var n = 0; n < mapFilters.length; n++) {
-  mapFilters[n].removeAttribute("disabled");
-}
+  for (var n = 0; n < mapFiltersSelect.length; n++) {
+    mapFiltersSelect[n].removeAttribute('disabled');
+  }
 
 };
 
-var mapFilters = document.querySelector ('.map__filters');
+var mapFilters = document.querySelector('.map__filters');
 
 mapFilters.onsubmit = function (evt) {
   evt.preventDefault();
-  }
+};
 
+var address = document.querySelector('.ad-form__element--address');
 
-  var address = document.querySelector ('.ad-form__element--address');
-
-  var adFormElementTitle = document.querySelector ('.ad-form__element-title');
+var adFormElementTitle = document.querySelector('.ad-form__element-title');
 
 var adFormElementPriceForNight = document.querySelector('.ad-form__element-price-for-night');
 
-address.value = mapPin.getBoundingClientRect().x +" " + mapPin.getBoundingClientRect().y;
+address.value = mapPin.getBoundingClientRect().x + ' ' + mapPin.getBoundingClientRect().y;
 
 var topSelectedType = document.querySelector('.map__top-type');
 var bottomSelectedType = document.querySelector('.ad-form__bottom-type');
-var adFormElementPriceForNight = document.querySelector ('.ad-form__element-price-for-night');
 
+if (topSelectedType.value === 'bungalo' || bottomSelectedType.value === 'bungalo') {
 
-  if (topSelectedType.value === 'bungalo'||bottomSelectedType.value==='bungalo') {
-    parseInt(adFormElementPriceForNight.value.length) > 0;
-    adFormElementPriceForNight.placeholder = "Минимальная цена 0₽";
-    adFormElementPriceForNight.setCustomValidity("Минимальная цена 0₽");
-    }
+  adFormElementPriceForNight.placeholder = 'Минимальная цена 0₽';
+  adFormElementPriceForNight.setCustomValidity('Минимальная цена 0₽');
+}
 
-  if (topSelectedType.value === 'flat'||bottomSelectedType.value==='flat') {
-    parseInt(adFormElementPriceForNight.value.length) > 1000;
-    adFormElementPriceForNight.placeholder = "Минимальная цена 1000₽";
-    adFormElementPriceForNight.setCustomValidity("Минимальная цена 1000₽");
+if (topSelectedType.value === 'flat' || bottomSelectedType.value === 'flat') {
+
+  adFormElementPriceForNight.placeholder = 'Минимальная цена 1000₽';
+  adFormElementPriceForNight.setCustomValidity('Минимальная цена 1000₽');
+}
+
+if (topSelectedType.value === 'house' || bottomSelectedType.value === 'house') {
+
+  adFormElementPriceForNight.placeholder = 'Минимальная цена 5000₽';
+  adFormElementPriceForNight.setCustomValidity('Минимальная цена 5000₽');
+}
+
+if (topSelectedType.value === 'palace' || bottomSelectedType.value === 'palace') {
+
+  adFormElementPriceForNight.placeholder = 'Минимальная цена 10000₽';
+  adFormElementPriceForNight.setCustomValidity('Минимальная цена 10 000₽');
+}
+
+adForm.onsubmit = function () {
+
+  if (typeof adFormElementTitle.value === 'string' && typeof adFormElementPriceForNight.value === 'number' && adFormElementPriceForNight.length < 1000000) {
+    return true;
   }
 
-  if (topSelectedType.value === 'house'||bottomSelectedType.value==='house') {
-    parseInt(adFormElementPriceForNight.value.length) > 5000;
-    adFormElementPriceForNight.placeholder = "Минимальная цена 5000₽";
-    adFormElementPriceForNight.setCustomValidity('Минимальная цена 5000₽');
+  else {
+    return false;
   }
 
-  if( topSelectedType.value === 'palace'||bottomSelectedType.value==='palace') {
-    parseInt(adFormElementPriceForNight.value.length) > 10000;
-    adFormElementPriceForNight.placeholder = "Минимальная цена 10000₽";
-    adFormElementPriceForNight.setCustomValidity('Минимальная цена 10 000₽');
-  }
-
-
-
-  adForm.onsubmit = function (evt) {
-
-
-    if (typeof adFormElementTitle.value=='string'&&typeof adFormElementPriceForNight.value=='number'&&adFormElementPriceForNight.length<1000000) {
-      event.preventDefault();
-    }
-    else {
-      return false;
-    }
-  }
-
-
-
-
-
-  /*&&&&*/
+};
