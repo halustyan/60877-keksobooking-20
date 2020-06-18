@@ -23,7 +23,7 @@
         <div class="map__overlay">
           <h2 class="map__title">И снова Токио!</h2>
         </div>
-        <button class="map__pin map__pin--main" style="left: 570px; top: 375px;">
+        <button class="map__pin map__pin--main" >
           <img src="img/muffin-red.svg" width="40" height="44" draggable="false" alt="Метка объявления">
           <svg viewBox="0 0 70 70" width="156" height="156" aria-label="Метка для поиска жилья">
             <defs>
@@ -38,7 +38,7 @@
       <!-- Фильтрация объявлений -->
       <div class="map__filters-container">
         <form action="#" class="map__filters" autocomplete="off">
-          <select name="housing-type" id="housing-type" class="map__filter">
+          <select name="housing-type" id="housingtype" class="map__filter map__top-type">
             <option value="any" selected>Любой тип жилья</option>
             <option value="palace">Дворец</option>
             <option value="flat">Квартира</option>
@@ -100,15 +100,15 @@
         </fieldset>
         <fieldset class="ad-form__element ad-form__element--wide">
           <label class="ad-form__label" for="title">Заголовок объявления</label>
-          <input id="title" name="title" type="text" placeholder="Милая, уютная квартирка в центре Токио">
+          <input id="title" name="title" type="text" placeholder="Милая, уютная квартирка в центре Токио" required minlength="30" maxlength="100" class="ad-form__element-title">
         </fieldset>
         <fieldset class="ad-form__element ad-form__element--wide">
           <label class="ad-form__label" for="address">Адрес</label>
-          <input id="address" name="address" type="text">
+          <input id="address" name="address" type="text" class="ad-form__element--address">
         </fieldset>
         <fieldset class="ad-form__element">
           <label class="ad-form__label" for="type">Тип жилья</label>
-          <select id="type" name="type">
+          <select id="typebottomform" name="type" class="ad-form__bottom-type">
             <option value="bungalo">Бунгало</option>
             <option value="flat" selected>Квартира</option>
             <option value="house">Дом</option>
@@ -117,7 +117,7 @@
         </fieldset>
         <fieldset class="ad-form__element">
           <label class="ad-form__label" for="price">Цена за ночь, руб.</label>
-          <input id="price" name="price" type="number" placeholder="5000">
+          <input id="price" name="price" type="number" placeholder="5000" required maxlength="1000000" class="ad-form__element-price-for-night">
         </fieldset>
         <fieldset class="ad-form__element ad-form__element--time">
           <label class="ad-form__label" for="timein">Время заезда и выезда</label>

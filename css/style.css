@@ -1249,3 +1249,7 @@ fieldset {
 .hidden {
   display: none;
 }
+
+.invalidinput {
+border:7px solid red;
+}
