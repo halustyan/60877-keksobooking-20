@@ -267,42 +267,47 @@ var adFormElementTitle = document.querySelector('.ad-form__element-title');
 
 var adFormElementPriceForNight = document.querySelector('.ad-form__element-price-for-night');
 
-address.value = mapPin.getBoundingClientRect().x + ' ' + mapPin.getBoundingClientRect().y;
+var coordTopPin = mapPin.getBoundingClientRect().x;
+var coordLeftPin = mapPin.getBoundingClientRect().y;
+
+address.value = parseInt(coordTopPin, 10) + ' ' + parseInt(coordLeftPin, 10);
 
 var topSelectedType = document.querySelector('.map__top-type');
 var bottomSelectedType = document.querySelector('.ad-form__bottom-type');
 
-if (topSelectedType.value === 'bungalo' || bottomSelectedType.value === 'bungalo') {
+bottomSelectedType.onchange = function () {
+  if (topSelectedType.options[topSelectedType.selectedIndex].value === 'bungalo' || bottomSelectedType.options[bottomSelectedType.selectedIndex].value === 'bungalo') {
 
-  adFormElementPriceForNight.placeholder = 'Минимальная цена 0₽';
-  adFormElementPriceForNight.setCustomValidity('Минимальная цена 0₽');
-}
-
-if (topSelectedType.value === 'flat' || bottomSelectedType.value === 'flat') {
-
-  adFormElementPriceForNight.placeholder = 'Минимальная цена 1000₽';
-  adFormElementPriceForNight.setCustomValidity('Минимальная цена 1000₽');
-}
-
-if (topSelectedType.value === 'house' || bottomSelectedType.value === 'house') {
-
-  adFormElementPriceForNight.placeholder = 'Минимальная цена 5000₽';
-  adFormElementPriceForNight.setCustomValidity('Минимальная цена 5000₽');
-}
-
-if (topSelectedType.value === 'palace' || bottomSelectedType.value === 'palace') {
-
-  adFormElementPriceForNight.placeholder = 'Минимальная цена 10000₽';
-  adFormElementPriceForNight.setCustomValidity('Минимальная цена 10 000₽');
-}
-
-adForm.onsubmit = function () {
-
-  if (typeof adFormElementTitle.value === 'string' && typeof adFormElementPriceForNight.value === 'number' && adFormElementPriceForNight.length < 1000000) {
-    return true;
+    adFormElementPriceForNight.placeholder = 'Минимальная цена 0₽';
+    adFormElementPriceForNight.setCustomValidity('Минимальная цена 0₽');
   }
 
-  else {
+  if (topSelectedType.options[topSelectedType.selectedIndex].value === 'flat' || bottomSelectedType.options[bottomSelectedType.selectedIndex].value === 'flat') {
+
+    adFormElementPriceForNight.placeholder = 'Минимальная цена 1000₽';
+    adFormElementPriceForNight.setCustomValidity('Минимальная цена 1000₽');
+  }
+
+  if (topSelectedType.options[topSelectedType.selectedIndex].value === 'house' || bottomSelectedType.options[bottomSelectedType.selectedIndex].value === 'house') {
+
+    adFormElementPriceForNight.placeholder = 'Минимальная цена 5000₽';
+    adFormElementPriceForNight.setCustomValidity('Минимальная цена 5000₽');
+  }
+
+  if (topSelectedType.options[topSelectedType.selectedIndex].value === 'palace' || bottomSelectedType.options[bottomSelectedType.selectedIndex].value === 'palace') {
+
+    adFormElementPriceForNight.placeholder = 'Минимальная цена 10000₽';
+    adFormElementPriceForNight.setCustomValidity('Минимальная цена 10 000₽');
+  }
+};
+adForm.onsubmit = function () {
+
+  if (typeof adFormElementTitle.value === 'string' &&
+    typeof adFormElementPriceForNight.value === 'number' &&
+    adFormElementPriceForNight.length < 1000000
+  ) {
+    return true;
+  } else {
     return false;
   }
 
