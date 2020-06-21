@@ -258,12 +258,7 @@ mapPin.onmousedown = function (evt) {
 
 };
 
-var mapFilters = document.querySelector('.map__filters');
-
-
 var address = document.querySelector('.ad-form__element--address');
-
-var adFormElementTitle = document.querySelector('.ad-form__element-title');
 
 var adFormElementPriceForNight = document.querySelector('.ad-form__element-price-for-night');
 var heightimg = document.querySelector('.map__pin--main img').offsetHeight;
@@ -274,73 +269,72 @@ var coordLeftPin = mapPin.offsetLeft - widthPin;
 
 address.value = parseInt(coordLeftPin, 10) + ' ' + parseInt(coordTopPin, 10);
 
-var topSelectedType = document.querySelector('.map__top-type');
 var bottomSelectedType = document.querySelector('.ad-form__bottom-type');
 
-bottomSelectedType.addEventListener('change', function (evt) {
+bottomSelectedType.addEventListener('change', function () {
   if (bottomSelectedType.value === 'bungalo') {
-    adFormElementPriceForNight.placeholder = "Больше ноля и меньше 1000";
+    adFormElementPriceForNight.placeholder = 'Больше ноля и меньше 1000';
     if (adFormElementPriceForNight.value > 0 && adFormElementPriceForNight.value < 1000) {
-      adFormElementPriceForNight.setCustomValidity("");
+      adFormElementPriceForNight.setCustomValidity('');
     } else {
-      adFormElementPriceForNight.setCustomValidity("Больше ноля и меньше 1000");
+      adFormElementPriceForNight.setCustomValidity('Больше ноля и меньше 1000');
     }
   }
   if (bottomSelectedType.value === 'flat') {
-    adFormElementPriceForNight.placeholder = "Больше 1000 и меньше 5000";
+    adFormElementPriceForNight.placeholder = 'Больше 1000 и меньше 5000';
     if (adFormElementPriceForNight.value > 1000 && adFormElementPriceForNight.value < 5000) {
-      adFormElementPriceForNight.setCustomValidity("");
+      adFormElementPriceForNight.setCustomValidity('');
     } else {
-      adFormElementPriceForNight.setCustomValidity("Больше 1000 и меньше 5000");
+      adFormElementPriceForNight.setCustomValidity('Больше 1000 и меньше 5000');
     }
   }
   if (bottomSelectedType.value === 'house') {
-    adFormElementPriceForNight.placeholder = "Больше 5000 и меньше 10000";
+    adFormElementPriceForNight.placeholder = 'Больше 5000 и меньше 10000';
     if (adFormElementPriceForNight.value > 5000 && adFormElementPriceForNight.value < 10000) {
-      adFormElementPriceForNight.setCustomValidity("");
+      adFormElementPriceForNight.setCustomValidity('');
     } else {
-      adFormElementPriceForNight.setCustomValidity("Больше 5000 и меньше 10000");
+      adFormElementPriceForNight.setCustomValidity('Больше 5000 и меньше 10000');
     }
   }
   if (bottomSelectedType.value === 'palace') {
-    adFormElementPriceForNight.placeholder = "Больше 10000";
+    adFormElementPriceForNight.placeholder = 'Больше 10000';
     if (adFormElementPriceForNight.value > 10000) {
 
-      adFormElementPriceForNight.setCustomValidity("");
+      adFormElementPriceForNight.setCustomValidity('');
     } else {
-      adFormElementPriceForNight.setCustomValidity("Больше 10000");
+      adFormElementPriceForNight.setCustomValidity('Больше 10000');
     }
   }
 
 });
 
-adFormElementPriceForNight.addEventListener('change', function (evt) {
+adFormElementPriceForNight.addEventListener('change', function () {
   if (bottomSelectedType.value === 'bungalo') {
     if (adFormElementPriceForNight.value > 0 && adFormElementPriceForNight.value < 1000) {
-      adFormElementPriceForNight.setCustomValidity("");
+      adFormElementPriceForNight.setCustomValidity('');
     } else {
-      adFormElementPriceForNight.setCustomValidity("Больше ноля и меньше 1000");
+      adFormElementPriceForNight.setCustomValidity('Больше ноля и меньше 1000');
     }
   }
   if (bottomSelectedType.value === 'flat') {
     if (adFormElementPriceForNight.value > 1000 && adFormElementPriceForNight.value < 5000) {
-      adFormElementPriceForNight.setCustomValidity("");
+      adFormElementPriceForNight.setCustomValidity('');
     } else {
-      adFormElementPriceForNight.setCustomValidity("Больше 1000 и меньше 5000");
+      adFormElementPriceForNight.setCustomValidity('Больше 1000 и меньше 5000');
     }
   }
   if (bottomSelectedType.value === 'house') {
     if (adFormElementPriceForNight.value > 5000 && adFormElementPriceForNight.value < 10000) {
-      adFormElementPriceForNight.setCustomValidity("");
+      adFormElementPriceForNight.setCustomValidity('');
     } else {
-      adFormElementPriceForNight.setCustomValidity("Больше 5000 и меньше 10000");
+      adFormElementPriceForNight.setCustomValidity('Больше 5000 и меньше 10000');
     }
   }
   if (bottomSelectedType.value === 'palace') {
     if (adFormElementPriceForNight.value > 10000) {
-      adFormElementPriceForNight.setCustomValidity("");
+      adFormElementPriceForNight.setCustomValidity('');
     } else {
-      adFormElementPriceForNight.setCustomValidity("Больше 10000");
+      adFormElementPriceForNight.setCustomValidity('Больше 10000');
     }
   }
 });
