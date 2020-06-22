@@ -312,29 +312,126 @@ adFormElementPriceForNight.addEventListener('change', function () {
   if (bottomSelectedType.value === 'bungalo') {
     if (adFormElementPriceForNight.value > 0 && adFormElementPriceForNight.value < 1000) {
       adFormElementPriceForNight.setCustomValidity('');
+      adFormElementPriceForNight.style.border = "";
+      adFormElementPriceForNight.style.borderColor = "";
     } else {
       adFormElementPriceForNight.setCustomValidity('Больше ноля и меньше 1000');
+      adFormElementPriceForNight.style.border = "2px solid";
+      adFormElementPriceForNight.style.borderColor = "red";
     }
   }
   if (bottomSelectedType.value === 'flat') {
     if (adFormElementPriceForNight.value > 1000 && adFormElementPriceForNight.value < 5000) {
       adFormElementPriceForNight.setCustomValidity('');
+      adFormElementPriceForNight.style.border = "";
+      adFormElementPriceForNight.style.borderColor = "";
     } else {
       adFormElementPriceForNight.setCustomValidity('Больше 1000 и меньше 5000');
+      adFormElementPriceForNight.style.border = "2px solid";
+      adFormElementPriceForNight.style.borderColor = "red";
     }
   }
   if (bottomSelectedType.value === 'house') {
     if (adFormElementPriceForNight.value > 5000 && adFormElementPriceForNight.value < 10000) {
       adFormElementPriceForNight.setCustomValidity('');
+      adFormElementPriceForNight.style.border = "";
+      adFormElementPriceForNight.style.borderColor = "";
     } else {
       adFormElementPriceForNight.setCustomValidity('Больше 5000 и меньше 10000');
+      adFormElementPriceForNight.style.border = "2px solid";
+      adFormElementPriceForNight.style.borderColor = "red";
     }
   }
   if (bottomSelectedType.value === 'palace') {
     if (adFormElementPriceForNight.value > 10000) {
       adFormElementPriceForNight.setCustomValidity('');
+      adFormElementPriceForNight.style.border = "";
+      adFormElementPriceForNight.style.borderColor = "";
     } else {
       adFormElementPriceForNight.setCustomValidity('Больше 10000');
+      adFormElementPriceForNight.style.border = "2px solid";
+      adFormElementPriceForNight.style.borderColor = "red";
     }
   }
 });
+
+var timeIn = document.querySelector("#timein");
+var timeOut = document.querySelector("#timeout");
+
+timeIn.addEventListener('change', function () {
+  if (timeIn.value === '12:00') {
+    timeOut.value ='12:00';
+  }
+  if (timeIn.value === '13:00') {
+    timeOut.value ='13:00';
+  }
+  if (timeIn.value === '14:00') {
+    timeOut.value ='14:00';
+  }
+});
+
+timeOut.addEventListener('change', function () {
+  if (timeOut.value === '12:00') {
+    timeIn.value ='12:00';
+  }
+  if (timeOut.value === '13:00') {
+    timeIn.value ='13:00';
+  }
+  if (timeOut.value === '14:00') {
+    timeIn.value ='14:00';
+  }
+});
+
+var roomNumber = document.querySelector('#room_number');
+
+var capacityrooms = document.querySelector('#capacity');
+
+roomNumber.addEventListener('change', function () {
+if (roomNumber.value ==='1') {
+  capacityrooms.options[0].disabled = true;
+  capacityrooms.options[1].disabled = true;
+  capacityrooms.options[3].disabled = true;
+  capacityrooms.value = '1';
+}
+
+if (roomNumber.value ==='2') {
+  capacityrooms.options[0].disabled = true;
+  capacityrooms.options[3].disabled = true;
+  capacityrooms.value = '1';
+}
+
+if (roomNumber.value ==='3') {
+  capacityrooms.options[3].disabled = true;
+  capacityrooms.value = '1';
+}
+
+if (roomNumber.value ==='100') {
+  capacityrooms.options[0].disabled = true;
+  capacityrooms.options[1].disabled = true;
+  capacityrooms.options[2].disabled = true;
+  capacityrooms.value = '0';
+}
+
+});
+
+
+capacityrooms.addEventListener('change', function () {
+  if (capacityrooms.value ==='1') {
+    roomNumber.value = '1';
+  }
+
+  if (capacityrooms.value ==='2') {
+    roomNumber.value = '2';
+  }
+
+  if (capacityrooms.value ==='3') {
+    roomNumber.value = '3';
+  }
+
+  if (capacityrooms.value ==='0') {
+    roomNumber.value = '100';
+  }
+
+  });
+
+

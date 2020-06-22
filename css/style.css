@@ -1250,9 +1250,6 @@ fieldset {
   display: none;
 }
 
-.invalidinput {
-border:7px solid red;
-}
 .hiddenString {
   display:none;
 }
