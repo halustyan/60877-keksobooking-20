@@ -228,12 +228,35 @@ var renderPin = function (objectElArray) {
     fragment.appendChild(createPinElement(objectElArray[b]));
     pinField.appendChild(fragment);
   }
+  var mapPins = document.querySelectorAll('.map__pin:not(.map__pin--main)');
+
+
+  for (var l = 0; i<mapPins.length; l++) {
+    mapPins[l].addEventListener('click', function(evt){})
+  }
+
+mapPins.forEach(function(item, index){
+item.addEventListener('click', function(evt){
+renderCard(ElObjectArray[index]);
+});
+});
   return true;
 };
-
 mapPin.style.left = '570px';
 mapPin.style.top = '375px';
-mapPin.onmousedown = function (evt) {
+
+mapPin.addEventListener('keydown', function (evt) {
+
+if (evt.keyCode == 13) {
+  renderCard(cardObject);
+  renderPin(ElObjectArray);
+  map.classList.remove('map--faded');
+  adForm.classList.remove('ad-form--disabled');
+  }
+});
+
+var activate = function (evt) {
+
   renderCard(cardObject);
 
   renderPin(ElObjectArray);
@@ -255,8 +278,11 @@ mapPin.onmousedown = function (evt) {
   for (var n = 0; n < mapFiltersSelect.length; n++) {
     mapFiltersSelect[n].removeAttribute('disabled');
   }
+  return true;
+}
 
-};
+
+mapPin.addEventListener('mousedown', activate);
 
 var address = document.querySelector('.ad-form__element--address');
 
@@ -389,6 +415,7 @@ var capacityrooms = document.querySelector('#capacity');
 roomNumber.addEventListener('change', function () {
 if (roomNumber.value ==='1') {
   capacityrooms.options[0].disabled = true;
+  capacityrooms.options[2].disabled = false;
   capacityrooms.options[1].disabled = true;
   capacityrooms.options[3].disabled = true;
   capacityrooms.value = '1';
@@ -396,13 +423,15 @@ if (roomNumber.value ==='1') {
 
 if (roomNumber.value ==='2') {
   capacityrooms.options[0].disabled = true;
+  capacityrooms.options[1].disabled = false;
   capacityrooms.options[3].disabled = true;
-  capacityrooms.value = '1';
+  capacityrooms.value = '2';
 }
 
 if (roomNumber.value ==='3') {
+  capacityrooms.options[0].disabled = false;
   capacityrooms.options[3].disabled = true;
-  capacityrooms.value = '1';
+  capacityrooms.value = '3';
 }
 
 if (roomNumber.value ==='100') {
@@ -433,5 +462,13 @@ capacityrooms.addEventListener('change', function () {
   }
 
   });
+  var cardClose = document.querySelector('.map').content.querySelector('.map__card').querySelector('.popup__close');
+  cardClose.addEventListener('click', function(evt){
+    if (evt.key === 'Esc') {
+      cardTemplate.style.display = "none";
+    }
+    cardTemplate.style.display = "none";
+  });
+
 
 
