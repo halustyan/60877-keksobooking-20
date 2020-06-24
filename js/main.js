@@ -118,7 +118,6 @@ var renderCard = function (obj) {
 
   var fragmentCard = document.createDocumentFragment();
   fragmentCard.appendChild(newCardElement);
-
   map.appendChild(fragmentCard);
 
   var photoElement = document.querySelector('.popup__photos');
@@ -230,7 +229,6 @@ var renderPin = function (objectElArray) {
   }
   var mapPins = document.querySelectorAll('.map__pin:not(.map__pin--main)');
 
-
   for (var l = 0; i<mapPins.length; l++) {
     mapPins[l].addEventListener('click', function(evt){})
   }
@@ -241,7 +239,9 @@ renderCard(ElObjectArray[index]);
 });
 });
   return true;
+
 };
+
 mapPin.style.left = '570px';
 mapPin.style.top = '375px';
 
@@ -258,6 +258,19 @@ if (evt.keyCode == 13) {
 var activate = function (evt) {
 
   renderCard(cardObject);
+  var popupclose = document.querySelector('.map').querySelector('.map__card').querySelector('.popup__close');
+
+  popupclose.addEventListener('click', function (evt) {
+    if (evt.key=="Enter") {
+      document.querySelector('.map__card').style.display = "none";
+    }
+    document.querySelector('.map__card').style.display = "none";
+  });
+  document.addEventListener('keydown', function(evt){
+    if(evt.keyCode == 27) {
+      document.querySelector('.map__card').style.display = "none";
+    }
+  })
 
   renderPin(ElObjectArray);
 
@@ -280,6 +293,8 @@ var activate = function (evt) {
   }
   return true;
 }
+
+
 
 
 mapPin.addEventListener('mousedown', activate);
@@ -462,13 +477,3 @@ capacityrooms.addEventListener('change', function () {
   }
 
   });
-  var cardClose = document.querySelector('.map').content.querySelector('.map__card').querySelector('.popup__close');
-  cardClose.addEventListener('click', function(evt){
-    if (evt.key === 'Esc') {
-      cardTemplate.style.display = "none";
-    }
-    cardTemplate.style.display = "none";
-  });
-
-
-
