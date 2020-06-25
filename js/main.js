@@ -300,6 +300,9 @@ var activatePage = function (evt) {
   for (var n = 0; n < mapFiltersSelect.length; n++) {
     mapFiltersSelect[n].removeAttribute('disabled');
   }
+  for (var e = 0; e < adFormTextarea.length; e++) {
+    adFormTextarea[e].removeAttribute('disabled');
+  }
   return true;
 }
 
