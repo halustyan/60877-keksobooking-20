@@ -227,7 +227,7 @@ var renderPin = function (objectElArray) {
     fragment.appendChild(createPinElement(objectElArray[b]));
     pinField.appendChild(fragment);
   }
-  var mapPins = document.querySelectorAll('.map__pin:not(.map__pin--main)');
+  /*var mapPins = document.querySelectorAll('.map__pin:not(.map__pin--main)');
 
   for (var l = 0; i<mapPins.length; l++) {
     mapPins[l].addEventListener('click', function(evt){})
@@ -237,7 +237,7 @@ mapPins.forEach(function(item, index){
 item.addEventListener('click', function(evt){
 renderCard(ElObjectArray[index]);
 });
-});
+});*/
   return true;
 
 };
@@ -274,6 +274,16 @@ var activate = function (evt) {
 
   renderPin(ElObjectArray);
 
+  var mapPins = document.querySelectorAll('.map__pin:not(.map__pin--main)');
+  for (var l = 0; i<mapPins.length; l++) {
+    mapPins[l].addEventListener('click', function(evt){})
+  }
+
+mapPins.forEach(function(item, index){
+item.addEventListener('click', function(evt){
+renderCard(ElObjectArray[index]);
+});
+});
   if (evt.which === 1) {
 
     map.classList.remove('map--faded');
@@ -454,6 +464,7 @@ if (roomNumber.value ==='100') {
   capacityrooms.options[1].disabled = true;
   capacityrooms.options[2].disabled = true;
   capacityrooms.value = '0';
+  capacityrooms.options[3].disabled = false;
 }
 
 });
