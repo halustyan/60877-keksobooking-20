@@ -1,6 +1,10 @@
 'use strict';
-var arr = [];
+//MAIN.JS
+(function () {
+
+window.arr = arr;
 var map = document.querySelector('.map');
+window.map = map;
 
 function randomInteger(min, max) {
   var rand = min - 0.5 + Math.random() * (max - min + 1);
@@ -14,7 +18,9 @@ var getRandomArrayEl = function (randarr) {
 
 var types = ['palace', 'flat', 'house', 'bungalo'];
 
+window.types = types;
 var photos = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
+window.photos = photos;
 
 var createObject = function (index) {
   var sizeofthepin = 40;
@@ -80,7 +86,10 @@ for (var i = 0; i < 8; i++) {
 }
 
 
-var ElObjectArray = arr;
+
+
+window.ElObjectArray = ElObjectArray;
+})();
 
 var pinField = document.querySelector('.map__pins');
 var pinTemplate = document.querySelector('#pin').content.querySelector('.map__pin');
