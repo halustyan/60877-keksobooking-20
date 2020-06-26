@@ -29,12 +29,15 @@ var renderPin = function (objectElArray) {
 
   mapPins.forEach(function (item, index) {
     item.addEventListener('click', function (evt) {
+      console.log( renderCard(ElObjectArray[index]));
       renderCard(ElObjectArray[index]);
     });
   });
   return true;
 
 };
+
+console.log(ElObjectArray);
 
 mapPin.style.left = '570px';
 mapPin.style.top = '375px';
