@@ -36,10 +36,10 @@ var address = document.querySelector('.ad-form__element--address');
 var heightimg = document.querySelector('.map__pin--main img').offsetHeight;
 var widthPin = document.querySelector('.map__pin--main').offsetWidth / 2;
 
-var coordTopPin = mapPin.offsetTop - heightimg;
+/*var coordTopPin = mapPin.offsetTop - heightimg;
 var coordLeftPin = mapPin.offsetLeft - widthPin;
 
-address.value = parseInt(coordLeftPin, 10) + ' ' + parseInt(coordTopPin, 10);
+address.value = parseInt(coordLeftPin, 10) + ' ' + parseInt(coordTopPin, 10);*/
 var adFormElementPriceForNight = document.querySelector('.ad-form__element-price-for-night');
 
 var bottomSelectedType = document.querySelector('.ad-form__bottom-type');
