@@ -51,7 +51,7 @@ var createObject = function (index) {
 
   };
 
-  var obj = {
+  window.obj = {
 
     'author': {
       'avatar': 'img/avatars/user0' + (index + 1) + '.png',
