@@ -3,6 +3,7 @@
 (function () {
   var mapPinMain = document.querySelector('.map__pin--main');
   var placemarkAddress = document.querySelector('#address');
+  placemarkAddress.value = "570, 375";
   var activeMode = false;
 
   mapPinMain.addEventListener('mousedown', function (evt) {
@@ -39,7 +40,7 @@
       if ((mapPinMain.offsetTop - shift.y) < 61) {
         var flag3 = true;
       }
-      if ((mapPinMain.offsetTop - shift.y) > 559) {
+      if ((mapPinMain.offsetTop - shift.y) > 625) {
         var flag4 = true;
       }
 
@@ -53,7 +54,7 @@
         mapPinMain.style.top = 61 + 'px';
       }
       if (flag4) {
-        mapPinMain.style.top = 559 + 'px';
+        mapPinMain.style.top = 625 + 'px';
       }
       if (!flag1 && !flag2 && !flag3 && !flag4) {
         mapPinMain.style.top = (mapPinMain.offsetTop - shift.y) + 'px';
@@ -64,7 +65,6 @@
       var pinY = (mapPinMain.offsetTop - shift.y);
 
       placemarkAddress.value = pinX + ', ' + pinY;
-      console.log(pinX);
     };
 
     var onMouseUp = function (upEvt) {

@@ -29,16 +29,13 @@ var renderPin = function (objectElArray) {
 
   mapPins.forEach(function (item, index) {
     item.addEventListener('click', function (evt) {
-      console.log( renderCard(ElObjectArray[index]));
+
       renderCard(ElObjectArray[index]);
     });
   });
   return true;
 
 };
-
-console.log(ElObjectArray);
-
 mapPin.style.left = '570px';
 mapPin.style.top = '375px';
 
@@ -51,9 +48,8 @@ mapPin.addEventListener('keydown', function (evt) {
     adForm.classList.remove('ad-form--disabled');
   }
 });
-var activatePage = function (evt) {
 
-  renderCard(cardObject);
+var close = function () {
   var popupclose = document.querySelector('.map').querySelector('.map__card').querySelector('.popup__close');
 
   popupclose.addEventListener('click', function (evt) {
@@ -67,9 +63,32 @@ var activatePage = function (evt) {
       document.querySelector('.map__card').remove();
     }
   })
+  return true;
+}
 
-  renderPin(ElObjectArray);
+var removedisabled = function () {
+  map.classList.remove('map--faded');
+  adForm.classList.remove('ad-form--disabled');
 
+
+for (var g = 0; g < adFormInputs.length; g++) {
+  adFormInputs[g].removeAttribute('disabled');
+}
+
+for (var e = 0; e < adFormSelects.length; e++) {
+  adFormSelects[e].removeAttribute('disabled');
+}
+
+for (var n = 0; n < mapFiltersSelect.length; n++) {
+  mapFiltersSelect[n].removeAttribute('disabled');
+}
+for (var e = 0; e < adFormTextarea.length; e++) {
+  adFormTextarea[e].removeAttribute('disabled');
+}
+return true;
+}
+
+var addClick = function () {
   var mapPins = document.querySelectorAll('.map__pin:not(.map__pin--main)');
   for (var l = 0; l < mapPins.length; l++) {
     mapPins[l].addEventListener('click', function (evt) {})
@@ -80,27 +99,58 @@ var activatePage = function (evt) {
       renderCard(ElObjectArray[index]);
     });
   });
-  if (evt.which === 1) {
-
-    map.classList.remove('map--faded');
-    adForm.classList.remove('ad-form--disabled');
-  }
-
-  for (var g = 0; g < adFormInputs.length; g++) {
-    adFormInputs[g].removeAttribute('disabled');
-  }
-
-  for (var e = 0; e < adFormSelects.length; e++) {
-    adFormSelects[e].removeAttribute('disabled');
-  }
-
-  for (var n = 0; n < mapFiltersSelect.length; n++) {
-    mapFiltersSelect[n].removeAttribute('disabled');
-  }
-  for (var e = 0; e < adFormTextarea.length; e++) {
-    adFormTextarea[e].removeAttribute('disabled');
-  }
   return true;
 }
-mapPin.addEventListener('mousedown', activatePage);
+
+var activatePage = function (data) {
+
+  renderCard(cardObject);
+
+  close ();
+
+  renderPin(data);
+
+  addClick();
+
+  removedisabled ();
+  return true;
+}
+window.onError = function (dataerror) {
+  var errorTemplate = document.querySelector('#error').content.querySelector('.error');
+  var errorTemplateClone = errorTemplate.cloneNode(true);
+  var main = document.querySelector('main');
+  main.prepend(errorTemplateClone);
+  errorTemplateClone.textContent = dataerror;
+  if (dataerror ===null||dataerror ===undefined) {
+    main.insertAdjacentHTML('afterbegin','<p class="error__message">Ошибка загрузки объявления</p>    <button class="error__button">Попробовать снова</button>"');
+  }
+  return true;
+};
+
+window.onSuccess = function (dataSuccess) {
+  var successTemplate = document.querySelector('#success').content.querySelector('.success');
+  var successTemplateClone = successTemplate.cloneNode(true);
+  var main = document.querySelector('main');
+  successTemplateClone.textContent = dataSuccess;
+  main.prepend(successTemplateClone);
+  if (dataSuccess ===null||dataSuccess ===undefined) {
+    main.insertAdjacentHTML('afterbegin','<p class="success__message">Ваше объявление<br>успешно размещено!</p>"');
+  }
+  return true;
+};
+
+
+function onLoad (data) {
+  activatePage(data);
+}
+
+function onMouseUpRenderPins() {
+  window.load(onLoad, onError);
+}
+
+mapPin.addEventListener('mousedown', onMouseUpRenderPins);
+
+
+
+
 })();
