@@ -30,7 +30,7 @@ function disabledFunction(arr1, arr2, arr3, arr4) {
 
 var mapFiltersInputs = document.querySelectorAll('.map__filters select');
 
-function disabledaftersend(arr1, arr2, arr3, arr4, arr5) {
+function disabledaftersend(arr1, arr2, arr3, arr4, arr5, arr6) {
   for (var z = 0; g < arr1.length; z++) {
     arr1[z].setAttribute('disabled', 'disabled');
     arr1[z].value = '';
@@ -53,6 +53,13 @@ function disabledaftersend(arr1, arr2, arr3, arr4, arr5) {
   for (var e = 0; e < arr5.length; e++) {
     arr5[e].setAttribute('disabled', 'disabled');
     arr5[e].value = '';
+  }
+
+  var cardTemplate = document.querySelector('.map__card');
+  cardTemplate.style.display = 'none';
+  document.querySelector('map').classList.add('map--faded');
+  for (var g= 0; g < arr6.length; g++) {
+    arr6[g].style.display = "none";
   }
 
   return true;
@@ -267,6 +274,6 @@ if (request.status === 200) {
 
   }
 adForm.classList.add('ad-form--disabled');
-disabledaftersend(mapFiltersSelect, adFormTextarea, adFormInputs, adFormSelects, mapFiltersInputs)
+disabledaftersend(mapFiltersSelect, adFormTextarea, adFormInputs, adFormSelects, mapFiltersInputs, mapPins)
 });
 })();

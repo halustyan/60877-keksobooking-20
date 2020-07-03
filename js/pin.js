@@ -90,6 +90,7 @@ return true;
 
 var addClick = function () {
   var mapPins = document.querySelectorAll('.map__pin:not(.map__pin--main)');
+  window.mapPins = mapPins;
   for (var l = 0; l < mapPins.length; l++) {
     mapPins[l].addEventListener('click', function (evt) {})
   }
@@ -146,8 +147,6 @@ function onLoad (data) {
 
 function onMouseUpRenderPins() {
   window.load(onLoad, onError);
-  document.addEventListener('keydown', function (evt) {
-  });
 }
 
 mapPin.addEventListener('mousedown', onMouseUpRenderPins);
