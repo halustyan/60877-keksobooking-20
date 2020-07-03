@@ -28,6 +28,36 @@ function disabledFunction(arr1, arr2, arr3, arr4) {
   return true;
 }
 
+var mapFiltersInputs = document.querySelectorAll('.map__filters select');
+
+function disabledaftersend(arr1, arr2, arr3, arr4, arr5) {
+  for (var z = 0; g < arr1.length; z++) {
+    arr1[z].setAttribute('disabled', 'disabled');
+    arr1[z].value = '';
+  }
+
+  for (var m = 0; m < arr2.length; m++) {
+    arr2[m].setAttribute('disabled', 'disabled');
+    arr2[m].value = '';
+  }
+
+  for (var g = 0; g < arr3.length; g++) {
+    arr3[g].setAttribute('disabled', 'disabled');
+    arr3[g].value = '';
+  }
+
+  for (var e = 0; e < arr4.length; e++) {
+    arr4[e].setAttribute('disabled', 'disabled');
+    arr4[e].value = '';
+  }
+  for (var e = 0; e < arr5.length; e++) {
+    arr5[e].setAttribute('disabled', 'disabled');
+    arr5[e].value = '';
+  }
+
+  return true;
+}
+
 disabledFunction(mapFiltersSelect, adFormTextarea, adFormInputs, adFormSelects);
 
 var adForm = document.querySelector('.ad-form');
@@ -208,5 +238,35 @@ capacityrooms.addEventListener('change', function () {
     roomNumber.value = '100';
   }
 
+});
+adForm.addEventListener('submit', function(evt) {
+  evt.preventDefault();
+  var adFormElementTitle = document.querySelector('.ad-form__element-title');
+  var adFormElementPriceForNight =  document.querySelector('.ad-form__element-price-for-night');
+  var description =  document.querySelector('#description');
+  var address =  document.querySelector('#address');
+  var formData = new FormData();
+formData.append("adtitle", adFormElementTitle.value);
+formData.append("price for night", adFormElementPriceForNight.value);
+formData.append("rooms number", capacityrooms.value);
+formData.append("description", description.value);
+formData.append("address", address.value);
+formData.append("timeIn", timeIn.value);
+formData.append("timeOut", timeOut.value);
+var request = new XMLHttpRequest();
+request.open("POST", "https://javascript.pages.academy/keksobooking");
+request.send(formData);
+if (request.status === 200) {
+  onSuccess();
+  document.addEventListener('keypress', function (e) {
+
+  });
+}
+  else {
+    onError();
+
+  }
+adForm.classList.add('ad-form--disabled');
+disabledaftersend(mapFiltersSelect, adFormTextarea, adFormInputs, adFormSelects, mapFiltersInputs)
 });
 })();

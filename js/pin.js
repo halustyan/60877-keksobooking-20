@@ -122,7 +122,7 @@ window.onError = function (dataerror) {
   main.prepend(errorTemplateClone);
   errorTemplateClone.textContent = dataerror;
   if (dataerror ===null||dataerror ===undefined) {
-    main.insertAdjacentHTML('afterbegin','<p class="error__message">Ошибка загрузки объявления</p>    <button class="error__button">Попробовать снова</button>"');
+    main.insertAdjacentHTML('afterbegin','<div class="error"><p class="error__message">Ошибка загрузки объявления</p><button class="error__button">Попробовать снова</button></div>"');
   }
   return true;
 };
@@ -134,7 +134,7 @@ window.onSuccess = function (dataSuccess) {
   successTemplateClone.textContent = dataSuccess;
   main.prepend(successTemplateClone);
   if (dataSuccess ===null||dataSuccess ===undefined) {
-    main.insertAdjacentHTML('afterbegin','<p class="success__message">Ваше объявление<br>успешно размещено!</p>"');
+    main.insertAdjacentHTML('afterbegin','<div class="success"><p class="success__message">Ваше объявление<br>успешно размещено!</p></div>"');
   }
   return true;
 };
@@ -146,6 +146,8 @@ function onLoad (data) {
 
 function onMouseUpRenderPins() {
   window.load(onLoad, onError);
+  document.addEventListener('keydown', function (evt) {
+  });
 }
 
 mapPin.addEventListener('mousedown', onMouseUpRenderPins);
