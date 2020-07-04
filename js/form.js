@@ -29,8 +29,8 @@ function disabledFunction(arr1, arr2, arr3, arr4) {
 }
 
 var mapFiltersInputs = document.querySelectorAll('.map__filters select');
-
-function disabledaftersend(arr1, arr2, arr3, arr4, arr5, arr6) {
+window.mapFiltersInputs = mapFiltersInputs;
+window.disabledaftersend = function(arr1, arr2, arr3, arr4, arr5, arr6) {
   for (var z = 0; g < arr1.length; z++) {
     arr1[z].setAttribute('disabled', 'disabled');
     arr1[z].value = '';
@@ -57,10 +57,7 @@ function disabledaftersend(arr1, arr2, arr3, arr4, arr5, arr6) {
 
   var cardTemplate = document.querySelector('.map__card');
   cardTemplate.style.display = 'none';
-  document.querySelector('map').classList.add('map--faded');
-  for (var g= 0; g < arr6.length; g++) {
-    arr6[g].style.display = "none";
-  }
+  document.querySelector('.map').classList.add('map--faded');
 
   return true;
 }
@@ -73,10 +70,6 @@ var address = document.querySelector('.ad-form__element--address');
 var heightimg = document.querySelector('.map__pin--main img').offsetHeight;
 var widthPin = document.querySelector('.map__pin--main').offsetWidth / 2;
 
-/*var coordTopPin = mapPin.offsetTop - heightimg;
-var coordLeftPin = mapPin.offsetLeft - widthPin;
-
-address.value = parseInt(coordLeftPin, 10) + ' ' + parseInt(coordTopPin, 10);*/
 var adFormElementPriceForNight = document.querySelector('.ad-form__element-price-for-night');
 
 var bottomSelectedType = document.querySelector('.ad-form__bottom-type');
@@ -166,8 +159,9 @@ adFormElementPriceForNight.addEventListener('change', function () {
 });
 
 var timeIn = document.querySelector("#timein");
+window.timeIn = timeIn;
 var timeOut = document.querySelector("#timeout");
-
+window.timeOut = timeOut;
 timeIn.addEventListener('change', function () {
   if (timeIn.value === '12:00') {
     timeOut.value = '12:00';
@@ -195,7 +189,7 @@ timeOut.addEventListener('change', function () {
 var roomNumber = document.querySelector('#room_number');
 
 var capacityrooms = document.querySelector('#capacity');
-
+window.capacityrooms = capacityrooms;
 roomNumber.addEventListener('change', function () {
   if (roomNumber.value === '1') {
     capacityrooms.options[0].disabled = true;
@@ -246,34 +240,5 @@ capacityrooms.addEventListener('change', function () {
   }
 
 });
-adForm.addEventListener('submit', function(evt) {
-  evt.preventDefault();
-  var adFormElementTitle = document.querySelector('.ad-form__element-title');
-  var adFormElementPriceForNight =  document.querySelector('.ad-form__element-price-for-night');
-  var description =  document.querySelector('#description');
-  var address =  document.querySelector('#address');
-  var formData = new FormData();
-formData.append("adtitle", adFormElementTitle.value);
-formData.append("price for night", adFormElementPriceForNight.value);
-formData.append("rooms number", capacityrooms.value);
-formData.append("description", description.value);
-formData.append("address", address.value);
-formData.append("timeIn", timeIn.value);
-formData.append("timeOut", timeOut.value);
-var request = new XMLHttpRequest();
-request.open("POST", "https://javascript.pages.academy/keksobooking");
-request.send(formData);
-if (request.status === 200) {
-  onSuccess();
-  document.addEventListener('keypress', function (e) {
 
-  });
-}
-  else {
-    onError();
-
-  }
-adForm.classList.add('ad-form--disabled');
-disabledaftersend(mapFiltersSelect, adFormTextarea, adFormInputs, adFormSelects, mapFiltersInputs, mapPins)
-});
 })();

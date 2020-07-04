@@ -22,7 +22,7 @@ var renderPin = function (objectElArray) {
     pinField.appendChild(fragment);
   }
   var mapPins = document.querySelectorAll('.map__pin:not(.map__pin--main)');
-
+  window.mapPins = mapPins;
   for (var l = 0; l < mapPins.length; l++) {
     mapPins[l].addEventListener('click', function (evt) {})
   }
@@ -89,8 +89,6 @@ return true;
 }
 
 var addClick = function () {
-  var mapPins = document.querySelectorAll('.map__pin:not(.map__pin--main)');
-  window.mapPins = mapPins;
   for (var l = 0; l < mapPins.length; l++) {
     mapPins[l].addEventListener('click', function (evt) {})
   }
