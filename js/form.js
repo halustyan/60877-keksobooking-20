@@ -1,13 +1,22 @@
 (function () {
+
 var adFormInputs = document.querySelectorAll('.ad-form input');
 window.adFormInputs = adFormInputs;
+
 var adFormSelects = document.querySelectorAll('.ad-form select');
 window.adFormSelects = adFormSelects;
+
 var adFormTextarea = document.querySelectorAll('.ad-form textarea');
 window.adFormTextarea= adFormTextarea;
 
+var formTitle = document.querySelector('.ad-form__element-title');
+
 var mapFiltersSelect = document.querySelector('.map__filters select');
 window.mapFiltersSelect = mapFiltersSelect;
+
+
+
+
 
 function disabledFunction(arr1, arr2, arr3, arr4) {
   for (var z = 0; g < arr1.length; z++) {
@@ -55,8 +64,6 @@ window.disabledaftersend = function(arr1, arr2, arr3, arr4, arr5, arr6) {
     arr5[e].value = '';
   }
 
-  var cardTemplate = document.querySelector('.map__card');
-  cardTemplate.style.display = 'none';
   document.querySelector('.map').classList.add('map--faded');
 
   return true;
@@ -110,6 +117,29 @@ bottomSelectedType.addEventListener('change', function () {
   }
 
 });
+
+
+formTitle.addEventListener('invalid', function () {
+  if (formTitle.validity.tooShort) {
+    formTitle.setCustomValidity('Имя должно состоять минимум из 30-х символов');
+    formTitle.style.border = "2px solid";
+    formTitle.style.borderColor = "red";
+  } else if (formTitle.validity.tooLong) {
+    formTitle.setCustomValidity('Имя не должно превышать 100-ти символов');
+    formTitle.style.border = "2px solid";
+    formTitle.style.borderColor = "red";
+  } else if (formTitle.validity.valueMissing) {
+    formTitle.setCustomValidity('Обязательное поле');
+    formTitle.style.border = "2px solid";
+    formTitle.style.borderColor = "red";
+    this.focus();
+  }
+  else {
+    formTitle.setCustomValidity('');
+    formTitle.style.border = "";
+    formTitle.style.borderColor = "";
+  }
+  });
 
 adFormElementPriceForNight.addEventListener('change', function () {
   if (bottomSelectedType.value === 'bungalo') {

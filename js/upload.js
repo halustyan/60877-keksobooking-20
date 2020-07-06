@@ -6,13 +6,6 @@
   var description =  document.querySelector('#description');
   var address =  document.querySelector('#address');
   var formData = new FormData(this);
-/*formData.append("adtitle", adFormElementTitle.value);
-formData.append("price for night", adFormElementPriceForNight.value);
-formData.append("rooms number", capacityrooms.value);
-formData.append("description", description.value);
-formData.append("address", address.value);
-formData.append("timeIn", timeIn.value);
-formData.append("timeOut", timeOut.value);*/
 var request = new XMLHttpRequest();
 request.responseType = 'json';
 request.open("POST", "https://javascript.pages.academy/keksobooking");
@@ -22,7 +15,6 @@ if (request.status === 200) {
 }
   else {
     onError();
-
   }
 disabledaftersend(mapFiltersSelect, adFormTextarea, adFormInputs, adFormSelects, mapFiltersInputs);
 adForm.classList.add('ad-form--disabled');
