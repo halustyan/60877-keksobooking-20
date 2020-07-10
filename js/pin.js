@@ -16,7 +16,8 @@ var createPinElement = function (itemarrayObjEl) {
 };
 var mapPin = document.querySelector('.map__pin--main');
 window.mapPin = mapPin;
-var renderPin = function (objectElArray) {
+
+window.renderPin = function (objectElArray) {
   for (var b = 0; b < objectElArray.length; b++) {
     fragment.appendChild(createPinElement(objectElArray[b]));
     pinField.appendChild(fragment);
@@ -26,6 +27,7 @@ var renderPin = function (objectElArray) {
   for (var l = 0; l < mapPins.length; l++) {
     mapPins[l].addEventListener('click', function (evt) {})
   }
+
 
   mapPins.forEach(function (item, index) {
     item.addEventListener('click', function (evt) {
@@ -101,7 +103,7 @@ var addClick = function () {
   return true;
 }
 
-var activatePage = function (data) {
+window.activatePage = function (data) {
 
   renderCard(cardObject);
 
@@ -113,64 +115,14 @@ var activatePage = function (data) {
 
   removedisabled ();
   document.querySelector('.map__card').remove();
-  return true;
+  mapPin.removeEventListener('mousedown', onMouseUpRenderPins);
 }
-window.onError = function (dataerror) {
-  var errorTemplate = document.querySelector('#error').content.querySelector('.error');
-  var errorTemplateClone = errorTemplate.cloneNode(true);
-  var main = document.querySelector('main');
-  main.prepend(errorTemplateClone);
-  errorTemplateClone.textContent = dataerror;
-  var errorDivfunc = document.querySelector('.error');
-  if (dataerror ===null||dataerror ===undefined) {
-    errorDivfunc.insertAdjacentHTML('afterbegin','<p class="error__message">Ошибка загрузки объявления</p><button class="error__button">Попробовать снова</button>');
-  }
-  var errorButton = document.querySelector('.error__button');
-  var errordiv = document.querySelector('.error');
-  errorButton.addEventListener('click', function (evt) {
-    errordiv.style.display = 'none';
-  });
-  errordiv.addEventListener('click', function (evt) {
-    errordiv.style.display = 'none';
-  });
-  return true;
-};
-
-
-
-window.onSuccess = function (dataSuccess) {
-  var successTemplate = document.querySelector('#success').content.querySelector('.success');
-  var successTemplateClone = successTemplate.cloneNode(true);
-  var main = document.querySelector('main');
-  successTemplateClone.textContent = dataSuccess;
-  main.prepend(successTemplateClone);
-  if (dataSuccess ===null||dataSuccess ===undefined) {
-    main.insertAdjacentHTML('afterbegin','<div class="success"><p class="success__message">Ваше объявление<br>успешно размещено!</p></div>"');
-  }
-  var successDiv = document.querySelector('.success');
-
-  document.addEventListener('click', function (evt) {
-    if (evt.target ==successDiv){
-      return
-    }
-    successDiv.remove();
-  });
-
-  return true;
-};
-
-
-function onLoad (data) {
-  activatePage(data);
+window.onLoad = function(data, onError, onSuccess) {
+  window.activatePage(data, onError, onSuccess);
 }
 
-function onMouseUpRenderPins() {
+window.onMouseUpRenderPins = function () {
   window.load(onLoad, onError);
 }
-
-mapPin.addEventListener('mousedown', onMouseUpRenderPins);
-
-
-
 
 })();

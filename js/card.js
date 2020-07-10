@@ -4,7 +4,7 @@ var Arrayrenderad = arr;
 var cardObject = Arrayrenderad[0];
 window.cardObject = cardObject;
 var cardTemplate = document.querySelector('#card').content.querySelector('.map__card');
-
+window.cardTemplate = cardTemplate;
 var newCardElement = cardTemplate.cloneNode(true);
 window.renderCard = function (obj) {
   newCardElement.querySelector('.popup__title').textContent = obj.offer.title;

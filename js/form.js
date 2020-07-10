@@ -63,9 +63,15 @@ window.disabledaftersend = function(arr1, arr2, arr3, arr4, arr5, arr6) {
     arr5[e].setAttribute('disabled', 'disabled');
     arr5[e].value = '';
   }
-
+  for (var g = 0; g < arr6.length; g++) {
+    arr6[g].remove();
+  }
+  var card = document.querySelector('.map__card');
+  if (card !==null) {
+    card.remove();
+  }
   document.querySelector('.map').classList.add('map--faded');
-
+  adForm.classList.add('ad-form--disabled');
   return true;
 }
 
@@ -119,7 +125,7 @@ bottomSelectedType.addEventListener('change', function () {
 });
 
 
-formTitle.addEventListener('invalid', function () {
+formTitle.addEventListener('change', function () {
   if (formTitle.validity.tooShort) {
     formTitle.setCustomValidity('Имя должно состоять минимум из 30-х символов');
     formTitle.style.border = "2px solid";

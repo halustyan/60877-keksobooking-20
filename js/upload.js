@@ -1,22 +1,23 @@
 (function () {
-  adForm.addEventListener('submit', function(evt) {
-  evt.preventDefault();
-  var adFormElementTitle = document.querySelector('.ad-form__element-title');
-  var adFormElementPriceForNight =  document.querySelector('.ad-form__element-price-for-night');
-  var description =  document.querySelector('#description');
-  var address =  document.querySelector('#address');
-  var formData = new FormData(this);
-var request = new XMLHttpRequest();
-request.responseType = 'json';
-request.open("POST", "https://javascript.pages.academy/keksobooking");
-request.send(formData);
-if (request.status === 200) {
-  onSuccess();
-}
-  else {
-    onError();
+'use strict';
+window.upload = function(data) {
+  var URL = "https://javascript.pages.academy/keksobooking";
+  var xhr = new XMLHttpRequest();
+  xhr.responseType = 'json';
+  xhr.addEventListener("load", function(){
+    window.onSuccess();
+  })
+  if (xhr.status ==400) {
+    window.onError();
   }
-disabledaftersend(mapFiltersSelect, adFormTextarea, adFormInputs, adFormSelects, mapFiltersInputs);
-adForm.classList.add('ad-form--disabled');
+  xhr.open("POST", URL);
+  xhr.send(data);
+}
+adForm.addEventListener('submit', function(evt) {
+  evt.preventDefault();
+  var formData = new FormData(this);
+window.upload(formData);
+disabledaftersend(mapFiltersSelect, adFormTextarea, adFormInputs, adFormSelects, mapFiltersInputs, mapPins);
 });
+
 })();
