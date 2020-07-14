@@ -3,7 +3,7 @@
 (function () {
   var mapPinMain = document.querySelector('.map__pin--main');
   var placemarkAddress = document.querySelector('#address');
-  placemarkAddress.value = "570, 375";
+  placemarkAddress.value = '570, 375';
   var activeMode = false;
 
   mapPinMain.addEventListener('mousedown', function (evt) {
@@ -90,8 +90,8 @@
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
   });
-  window.onMouseUpRenderPins2 =  function(){
+  window.onMouseUpRenderPins2 = function () {
     window.load(onLoad, onError);
-  }
+  };
   mapPin.addEventListener('mousedown', onMouseUpRenderPins);
 })();
