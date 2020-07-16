@@ -6,12 +6,11 @@
   var housingRooms = document.querySelector('#housing-rooms');
   var housingGuests = document.querySelector('#housing-guests');
 
-  var DEBOUNCE_INTERVAL = 300;
-var lastTimeout;
+  var DEBOUNCE_INTERVAL = 500;
   var renderFilteredPins = function (data) {
     var allPins = document.querySelectorAll('.map__pin:not(.map__pin--main)');
     allPins.forEach(function (pin) {
-      lastTimeout = window.setTimeout(function() {
+      window.setTimeout(function () {
         pin.remove();
       }, DEBOUNCE_INTERVAL);
 
@@ -91,7 +90,7 @@ var lastTimeout;
       if (featuresFilterFunction.length === 0) {
         return filteredData;
       }
-        for (var i = 0; i < featuresFilterFunction.length; i++) {
+      for (var i = 0; i < featuresFilterFunction.length; i++) {
         if (i !== 0) {
           filteredData = arr;
         }

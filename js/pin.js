@@ -87,11 +87,10 @@
   };
 
   window.onMouseUpRenderPins = function (data) {
-   var data = window.load.data;
+    data = window.load.data;
     if (typeof window.load === 'function') {
       window.load(window.onLoad, window.onError);
-    }
-    else {
+    } else {
       window.renderPin(data);
       removeDisabled();
     }
