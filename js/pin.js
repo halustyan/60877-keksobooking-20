@@ -29,7 +29,8 @@
     var mapPins = document.querySelectorAll('.map__pin:not(.map__pin--main)');
     window.mapPins = mapPins;
     for (var l = 0; l < mapPins.length; l++) {
-      mapPins[l].addEventListener('click', function () {});
+      mapPins[l].addEventListener('click', function () {
+      });
     }
 
     mapPins.forEach(function (item, index) {
@@ -87,11 +88,10 @@
   };
 
   window.onMouseUpRenderPins = function (data) {
-   var data = window.load.data;
+    data = window.load.data;
     if (typeof window.load === 'function') {
       window.load(window.onLoad, window.onError);
-    }
-    else {
+    } else {
       window.renderPin(data);
       removeDisabled();
     }

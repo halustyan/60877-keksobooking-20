@@ -34,6 +34,9 @@
 
     var features = obj.offer.features;
 
+    var mapCard = document.querySelector('.map__card');
+    mapCard.classList.add('active');
+
     var createListFeaturesElement = function () {
 
       for (var f = 0; f < features.length; f++) {

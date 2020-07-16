@@ -31,6 +31,12 @@
 
   window.returnintodefault = function () {
 
+    var bottomFilters = document.querySelectorAll('.features .feature__checkbox');
+
+    for (var x = 0; x < bottomFilters.length; x++) {
+      bottomFilters[x].removeAttribute('checked');
+    }
+
     bottomSelectedType.value = 'flat';
     adFormElementPriceForNight.value = adFormElementPriceForNightPlaceHolderValue;
     roomNumber.value = '1';
