@@ -51,7 +51,6 @@
       }
       successDiv.remove();
     });
-
     return true;
   };
 })();
