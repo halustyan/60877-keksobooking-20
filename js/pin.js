@@ -33,9 +33,8 @@
     }
 
     mapPins.forEach(function (item, index) {
-      item.addEventListener('click', function (evt) {
-
-        renderCard(objectElArray[index]);
+      item.addEventListener('click', function () {
+        window.renderCard(objectElArray[index]);
       });
     });
     return true;
@@ -47,47 +46,55 @@
   mapPin.addEventListener('keydown', function (evt) {
 
     if (evt.keyCode === 13) {
-      renderCard(cardObject);
-      renderPin(ElObjectArray);
-      map.classList.remove('map--faded');
-      adForm.classList.remove('ad-form--disabled');
+      window.renderCard(window.cardObject);
+      window.renderPin(window.elObjectArray);
+      window.map.classList.remove('map--faded');
+      window.adForm.classList.remove('ad-form--disabled');
     }
   });
 
-  var removedisabled = function () {
-    map.classList.remove('map--faded');
-    adForm.classList.remove('ad-form--disabled');
+  var removeDisabled = function () {
+    window.map.classList.remove('map--faded');
+    window.adForm.classList.remove('ad-form--disabled');
 
-
-    for (var g = 0; g < adFormInputs.length; g++) {
-      adFormInputs[g].removeAttribute('disabled');
+    for (var g = 0; g < window.adFormInputs.length; g++) {
+      window.adFormInputs[g].removeAttribute('disabled');
     }
 
-    for (var e = 0; e < adFormSelects.length; e++) {
-      adFormSelects[e].removeAttribute('disabled');
+    for (var e = 0; e < window.adFormSelects.length; e++) {
+      window.adFormSelects[e].removeAttribute('disabled');
     }
 
-    for (var n = 0; n < mapFiltersSelect.length; n++) {
-      mapFiltersSelect[n].removeAttribute('disabled');
+    for (var n = 0; n < window.mapFiltersSelect.length; n++) {
+      window.mapFiltersSelect[n].removeAttribute('disabled');
     }
-    for (var r = 0; r < adFormTextarea.length; r++) {
-      adFormTextarea[r].removeAttribute('disabled');
+    for (var r = 0; r < window.adFormTextareas.length; r++) {
+      window.adFormTextareas[r].removeAttribute('disabled');
     }
     return true;
   };
 
   window.activatePage = function (data) {
-    renderPin(data);
-    removedisabled();
-    mapPin.removeEventListener('mousedown', onMouseUpRenderPins);
-    mapPin.addEventListener('mousedown', onMouseUpRenderPins);
-  };
-  window.onLoad = function (data, onError, onSuccess) {
-    window.activatePage(data, onError, onSuccess);
+
+    window.renderPin(data);
+    removeDisabled();
+
   };
 
-  window.onMouseUpRenderPins = function () {
-    window.load(onLoad, onError);
+  window.onLoad = function (data, onError, onSuccess) {
+    window.activatePage(data, onError, onSuccess);
+
+  };
+
+  window.onMouseUpRenderPins = function (data) {
+   var data = window.load.data;
+    if (typeof window.load === 'function') {
+      window.load(window.onLoad, window.onError);
+    }
+    else {
+      window.renderPin(data);
+      removeDisabled();
+    }
   };
 
 })();

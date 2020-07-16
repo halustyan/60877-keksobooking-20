@@ -7,30 +7,30 @@
     var main = document.querySelector('main');
     main.prepend(errorTemplateClone);
     errorTemplateClone.textContent = dataerror;
-    var errorDivfunc = document.querySelector('.error');
+    var errorDiv = document.querySelector('.error');
     if (dataerror === null || dataerror === undefined) {
-      errorDivfunc.insertAdjacentHTML('afterbegin', '<p class="error__message">Ошибка загрузки объявления</p><button class="error__button">Попробовать снова</button>');
+      errorDiv.insertAdjacentHTML('afterbegin', '<p class="error__message">Ошибка загрузки объявления</p><button class="error__button">Попробовать снова</button>');
     }
     var errorButton = document.querySelector('.error__button');
-    var errordiv = document.querySelector('.error');
-    window.errordiv = errordiv;
-    errorButton.addEventListener('click', function () {
-      errordiv.style.display = 'none';
-    });
-    errordiv.addEventListener('click', function () {
-      errordiv.style.display = 'none';
-    });
 
-    if (errorDivfunc !== null) {
+    window.errorDiv = errorDiv;
+    if (errorDiv !== null) {
 
-      document.addEventListener('click', function(evt) {
-        if (evt.target === errorDivfunc) {
+      document.addEventListener('click', function (evt) {
+        if (evt.target === errorDiv) {
           return;
         }
-        errorDivfunc.remove();
+        errorDiv.remove();
       });
     }
-
+    errorDiv.addEventListener('click', function () {
+      errorDiv.remove();
+    });
+    if (errorButton !== null) {
+      errorButton.addEventListener('click', function () {
+        errorDiv.style.display = 'none';
+      });
+    }
     return true;
   };
 

@@ -75,13 +75,13 @@
 
     };
 
-    return obj;
   };
 
   for (var i = 0; i < 8; i++) {
     arr.push(createObject(i));
   }
 
-  var ElObjectArray = arr;
-  window.ElObjectArray = ElObjectArray;
+  var elObjectArray = arr;
+  window.elObjectArray = elObjectArray;
+
 })();

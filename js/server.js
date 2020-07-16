@@ -15,8 +15,7 @@
         window.load = {
           data: xhr.response,
         };
-      }
-      else {
+      } else {
         onError('Статус ответа: ' + xhr.status);
       }
     });
