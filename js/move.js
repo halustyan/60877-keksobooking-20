@@ -90,8 +90,5 @@
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
   });
-  window.onMouseUpRenderPins2 = function () {
-    window.load(onLoad, onError);
-  };
-  mapPin.addEventListener('mousedown', onMouseUpRenderPins);
+  window.mapPin.addEventListener('mousedown', window.onMouseUpRenderPins);
 })();

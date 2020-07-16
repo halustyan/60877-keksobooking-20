@@ -14,12 +14,12 @@
     xhr.open('POST', URL);
     xhr.send(data);
   };
-  adForm.addEventListener('submit', function (evt) {
-    evt.preventDefault();
-    var formData = new FormData(this);
-    window.upload(formData);
-    disabledaftersend(mapFiltersSelect, adFormTextarea, adFormInputs, adFormSelects, mapFiltersInputs, mapPins);
 
+  window.adForm.addEventListener('submit', function (evt) {
+    evt.preventDefault();
+    var formData = new FormData(window.adForm);
+    window.upload(formData);
+    window.disabledAfterSend(window.mapFiltersSelect, window.adFormTextareas, window.adFormInputs, window.adFormSelects, window.mapFiltersInputs, window.mapPins);
   });
 
 })();

@@ -1,12 +1,13 @@
 'use strict';
 (function () {
-  var Arrayrenderad = [];
+  var arrayRenderads = [];
 
-  var cardObject = Arrayrenderad[0];
+  var cardObject = arrayRenderads[0];
   window.cardObject = cardObject;
   var cardTemplate = document.querySelector('#card').content.querySelector('.map__card');
   window.cardTemplate = cardTemplate;
   var newCardElement = cardTemplate.cloneNode(true);
+
   window.renderCard = function (obj) {
     newCardElement.querySelector('.popup__title').textContent = obj.offer.title;
     newCardElement.querySelector('.popup__text--address').textContent = obj.offer.address;
@@ -19,17 +20,15 @@
 
     var fragmentCard = document.createDocumentFragment();
     fragmentCard.appendChild(newCardElement);
-    map.appendChild(fragmentCard);
+    window.map.appendChild(fragmentCard);
 
     var photoElement = document.querySelector('.popup__photos');
 
     var photoArray = obj.offer.photos;
+    window.photoArray = photoArray;
+    var photoTemplate = document.querySelector('#card').content.querySelector('.popup__photo');
 
-    var photoTemplate = document.querySelector('#card')
-      .content
-      .querySelector('.popup__photo');
-
-    photoElement.innerHTML = '';
+    photoElement.textContent = '';
 
     var fragmentPhoto = document.createDocumentFragment();
 
@@ -70,9 +69,9 @@
     var insertPhotoOnPage = function () {
       var popupPhotos = document.querySelector('.popup__photos');
 
-      for (var g = 0; g < photos.length; g++) {
+      for (var g = 0; g < window.photos.length; g++) {
         var popupPhotosImg = document.createElement('img');
-        popupPhotosImg.src = photos[g];
+        popupPhotosImg.src = window.photos[g];
         popupPhotosImg.style.width = '70px';
         popupPhotosImg.style.height = '70px';
         popupPhotosImg.style.padding = '5px';
@@ -81,7 +80,7 @@
     };
     insertPhotoOnPage();
 
-    for (var k = types; k < photoArray.length; k++) {
+    for (var k = window.types; k < window.photoArray.length; k++) {
       var newPhotoElement = photoTemplate.cloneNode(true);
       newPhotoElement.src = photoArray[k];
       fragmentPhoto.appendChild(newPhotoElement);
@@ -90,7 +89,7 @@
     var popupclose = document.querySelector('.map').querySelector('.map__card').querySelector('.popup__close');
 
     popupclose.addEventListener('click', function (evt) {
-      if (evt.key == "Enter") {
+      if (evt.key === 'Enter') {
         document.querySelector('.map__card').remove();
       }
       if (document.querySelector('.map__card')) {
@@ -98,10 +97,11 @@
       }
     });
     document.addEventListener('keydown', function (evt) {
-      if (evt.keyCode == 27) {
+      if (evt.keyCode === 27) {
         document.querySelector('.map__card').remove();
       }
-    })
+    });
 
   };
+
 })();
