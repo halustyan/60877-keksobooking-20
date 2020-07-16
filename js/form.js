@@ -34,7 +34,7 @@
     var bottomFilters = document.querySelectorAll('.features .feature__checkbox');
 
     for (var x = 0; x < bottomFilters.length; x++) {
-      bottomFilters[x].removeAttribute('checked');
+      bottomFilters[x].checked=false;
     }
 
     bottomSelectedType.value = 'flat';
