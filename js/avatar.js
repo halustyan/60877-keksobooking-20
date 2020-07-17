@@ -6,10 +6,6 @@
   var fileChooser = document.querySelector('.ad-form-header__input');
   var preview = document.querySelector('.ad-form-header__preview img');
 
-  var fileChooserBottom = document.querySelector('.ad-form__upload input');
-  var previewBottom = document.querySelector('.ad-form__photo');
-
-
   // Первая картинка
   fileChooser.addEventListener('change', function () {
     var file = fileChooser.files[0];
