@@ -17,7 +17,7 @@
   var mapPin = document.querySelector('.map__pin--main');
   window.mapPin = mapPin;
 
-  window.renderPin = function (objectElArray) {
+  window.renderPins = function (objectElArray) {
     var maxCountPins = 5;
     if (objectElArray.length < maxCountPins) {
       maxCountPins = objectElArray.length;
@@ -35,7 +35,7 @@
 
     mapPins.forEach(function (item, index) {
       item.addEventListener('click', function () {
-        window.renderCard(objectElArray[index]);
+        window.renderCards(objectElArray[index]);
       });
     });
     return true;
@@ -47,8 +47,8 @@
   mapPin.addEventListener('keydown', function (evt) {
 
     if (evt.keyCode === 13) {
-      window.renderCard(window.cardObject);
-      window.renderPin(window.elObjectArray);
+      window.renderCards(window.cardObject);
+      window.renderPins(window.elObjectArray);
       window.map.classList.remove('map--faded');
       window.adForm.classList.remove('ad-form--disabled');
     }
@@ -77,7 +77,7 @@
 
   window.activatePage = function (data) {
 
-    window.renderPin(data);
+    window.renderPins(data);
     removeDisabled();
 
   };
@@ -92,7 +92,7 @@
     if (typeof window.load === 'function') {
       window.load(window.onLoad, window.onError);
     } else {
-      window.renderPin(data);
+      window.renderPins(data);
       removeDisabled();
     }
   };

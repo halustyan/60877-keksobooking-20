@@ -18,7 +18,7 @@
         document.querySelector('.map__card').remove();
       }
     });
-    window.renderPin(data);
+    window.renderPins(data);
   };
 
   mapFilters.addEventListener('change', function () {

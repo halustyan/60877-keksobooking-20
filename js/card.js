@@ -7,8 +7,8 @@
   var cardTemplate = document.querySelector('#card').content.querySelector('.map__card');
   window.cardTemplate = cardTemplate;
   var newCardElement = cardTemplate.cloneNode(true);
-
-  window.renderCard = function (obj) {
+  var obj;
+  window.renderCards = function (obj) {
     newCardElement.querySelector('.popup__title').textContent = obj.offer.title;
     newCardElement.querySelector('.popup__text--address').textContent = obj.offer.address;
     newCardElement.querySelector('.popup__text--price').textContent = obj.offer.price + '₽/ночь';
