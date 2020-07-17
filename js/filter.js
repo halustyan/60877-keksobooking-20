@@ -6,11 +6,17 @@
   var housingRooms = document.querySelector('#housing-rooms');
   var housingGuests = document.querySelector('#housing-guests');
 
-
+  var DEBOUNCE_INTERVAL = 300;
   var renderFilteredPins = function (data) {
     var allPins = document.querySelectorAll('.map__pin:not(.map__pin--main)');
     allPins.forEach(function (pin) {
-      pin.remove();
+      window.setTimeout(function () {
+        pin.remove();
+      }, DEBOUNCE_INTERVAL);
+
+      if (document.querySelector('.map__card') !== null) {
+        document.querySelector('.map__card').remove();
+      }
     });
     window.renderPin(data);
   };
@@ -47,20 +53,6 @@
 
     filteredData = filteredItemsHousingPrice;
 
-    var filteredItemsHousingRoomsPrice = filteredData.filter(function (item, i, arr) {
-      if (housingPriceValue === 'middle') {
-        return item.offer.price >= 10000 && item.offer.price <= 50000;
-      } else if (housingPriceValue === 'low') {
-        return item.offer.price < 10000;
-      } else if (housingPriceValue === 'high') {
-        return item.offer.price > 50000;
-      } else {
-        return arr;
-      }
-    });
-
-    filteredData = filteredItemsHousingRoomsPrice;
-
     var filteredItemsHousingRooms = filteredData.filter(function (item, i, arr) {
       if (housingRoomsValue === '1') {
         return item.offer.rooms === 1;
@@ -89,6 +81,25 @@
 
     filteredData = filteredItemHousingGuests;
 
-    renderFilteredPins(filteredData);
+    var features = Array.from(document.querySelectorAll('.map__checkbox:checked')).map(function (feature) {
+
+      return feature.value;
+    });
+
+    function getFilteredFeatures(filteredDataFilter, featuresFilterFunction) {
+      if (featuresFilterFunction.length === 0) {
+        return filteredData;
+      }
+      for (var i = 0; i < featuresFilterFunction.length; i++) {
+        if (i !== 0) {
+          filteredData = arr;
+        }
+        var arr = filteredData.filter(function (el) {
+          return el.offer.features.includes(featuresFilterFunction[i]);
+        });
+      }
+      return arr;
+    }
+    renderFilteredPins(getFilteredFeatures(filteredData, features));
   });
 })();
