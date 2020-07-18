@@ -86,8 +86,8 @@
   mapPin.addEventListener('keydown', function (evt) {
 
     if (evt.keyCode === 13) {
-     var data = window.load.data;
-      onMouseUpRenderPins(data);
+      var data = window.load.data;
+      window.onMouseUpRenderPins(data);
     }
   });
 

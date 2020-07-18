@@ -100,8 +100,11 @@
       }
     });
     document.addEventListener('keydown', function (evt) {
+      var mapCardRemove = document.querySelector('.map__card');
       if (evt.keyCode === 27) {
-        document.querySelector('.map__card').remove();
+        if (mapCardRemove !== null) {
+          document.querySelector('.map__card').remove();
+        }
       }
     });
 

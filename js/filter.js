@@ -100,11 +100,6 @@
       }
       return arr;
     }
-    mapPins.forEach(function (item, index) {
-      item.addEventListener('click', function () {
-        window.renderCards(data);
-      });
-    });
     renderFilteredPins(getFilteredFeatures(filteredData, features));
   });
 })();
