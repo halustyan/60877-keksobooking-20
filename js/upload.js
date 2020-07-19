@@ -20,6 +20,7 @@
     var formData = new FormData(window.adForm);
     window.upload(formData);
     window.disabledAfterSend(window.mapFiltersSelect, window.adFormTextareas, window.adFormInputs, window.adFormSelects, window.mapFiltersInputs, window.mapPins);
+    window.mapPin.addEventListener('mousedown', window.onMouseUpRenderPins);
   });
 
 })();

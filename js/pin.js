@@ -70,7 +70,7 @@
 
   window.onLoad = function (data, onError, onSuccess) {
     window.activatePage(data, onError, onSuccess);
-
+    window.mapPin.removeEventListener('mousedown', window.onMouseUpRenderPins);
   };
 
   window.onMouseUpRenderPins = function (data) {

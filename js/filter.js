@@ -20,10 +20,7 @@
     });
     window.renderPins(data);
   };
-function debounceFunction(renderFilteredPins) {
-  window.debounce(renderFilteredPins)
-}
-  filtersForm.addEventListener('change', debounceFunction);
+
   mapFilters.addEventListener('change', function () {
     var data = window.load.data;
     var housingTypeValue = housingType.value;
@@ -104,6 +101,10 @@ function debounceFunction(renderFilteredPins) {
       }
       return arr;
     }
+    var debounceFunction = function () {
+      window.debounce(window.renderFilteredPins);
+    };
+    filtersForm.addEventListener('change', debounceFunction);
     renderFilteredPins(getFilteredFeatures(filteredData, features));
   });
 })();
