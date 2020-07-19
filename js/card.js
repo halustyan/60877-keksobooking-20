@@ -8,7 +8,7 @@
   window.cardTemplate = cardTemplate;
   var newCardElement = cardTemplate.cloneNode(true);
 
-  window.renderCard = function (obj) {
+  window.renderCards = function (obj) {
     newCardElement.querySelector('.popup__title').textContent = obj.offer.title;
     newCardElement.querySelector('.popup__text--address').textContent = obj.offer.address;
     newCardElement.querySelector('.popup__text--price').textContent = obj.offer.price + '₽/ночь';
@@ -35,7 +35,7 @@
     var features = obj.offer.features;
 
     var mapCard = document.querySelector('.map__card');
-    mapCard.classList.add('active');
+    mapCard.classList.add('map__pin--active');
 
     var createListFeaturesElement = function () {
 
@@ -100,8 +100,11 @@
       }
     });
     document.addEventListener('keydown', function (evt) {
+      var mapCardRemove = document.querySelector('.map__card');
       if (evt.keyCode === 27) {
-        document.querySelector('.map__card').remove();
+        if (mapCardRemove !== null) {
+          document.querySelector('.map__card').remove();
+        }
       }
     });
 

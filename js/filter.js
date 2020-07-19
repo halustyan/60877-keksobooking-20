@@ -16,9 +16,10 @@
 
       if (document.querySelector('.map__card') !== null) {
         document.querySelector('.map__card').remove();
+
       }
     });
-    window.renderPin(data);
+    window.renderPins(data);
   };
 
   mapFilters.addEventListener('change', function () {
@@ -84,6 +85,7 @@
     var features = Array.from(document.querySelectorAll('.map__checkbox:checked')).map(function (feature) {
 
       return feature.value;
+
     });
 
     function getFilteredFeatures(filteredDataFilter, featuresFilterFunction) {
@@ -100,6 +102,8 @@
       }
       return arr;
     }
+    console.log(window.obj);
     renderFilteredPins(getFilteredFeatures(filteredData, features));
+
   });
 })();
