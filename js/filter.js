@@ -8,7 +8,9 @@
 
   var DEBOUNCE_INTERVAL = 300;
   var renderFilteredPins = function (data) {
+
     var allPins = document.querySelectorAll('.map__pin:not(.map__pin--main)');
+
     allPins.forEach(function (pin) {
       window.setTimeout(function () {
         pin.remove();
@@ -102,8 +104,6 @@
       }
       return arr;
     }
-    console.log(window.obj);
     renderFilteredPins(getFilteredFeatures(filteredData, features));
-
   });
 })();
