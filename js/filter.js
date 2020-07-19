@@ -20,7 +20,10 @@
     });
     window.renderPins(data);
   };
-
+function debounceFunction(renderFilteredPins) {
+  window.debounce(renderFilteredPins)
+}
+  filtersForm.addEventListener('change', debounceFunction);
   mapFilters.addEventListener('change', function () {
     var data = window.load.data;
     var housingTypeValue = housingType.value;
