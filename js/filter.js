@@ -5,17 +5,14 @@
   var housingPrice = document.querySelector('#housing-price');
   var housingRooms = document.querySelector('#housing-rooms');
   var housingGuests = document.querySelector('#housing-guests');
+  var filtersForm = document.querySelector('.map__filters');
 
-  var DEBOUNCE_INTERVAL = 300;
   var renderFilteredPins = function (data) {
 
     var allPins = document.querySelectorAll('.map__pin:not(.map__pin--main)');
 
     allPins.forEach(function (pin) {
-      window.setTimeout(function () {
-        pin.remove();
-      }, DEBOUNCE_INTERVAL);
-
+      pin.remove();
       if (document.querySelector('.map__card') !== null) {
         document.querySelector('.map__card').remove();
 
