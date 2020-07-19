@@ -102,7 +102,6 @@
       }
       return arr;
     }
-    console.log(window.obj);
     renderFilteredPins(getFilteredFeatures(filteredData, features));
 
   });
