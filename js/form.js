@@ -4,6 +4,12 @@
   var adFormInputs = document.querySelectorAll('.ad-form input');
   window.adFormInputs = adFormInputs;
 
+  var map = document.querySelector('.map');
+  window.map = map;
+
+  var photos = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
+  window.photos = photos;
+
   var adFormSelects = document.querySelectorAll('.ad-form select');
   window.adFormSelects = adFormSelects;
 
@@ -12,13 +18,17 @@
 
   var formTitle = document.querySelector('.ad-form__element-title');
 
-  var mapFiltersSelect = document.querySelector('.map__filters select');
+  var mapFiltersSelect = document.querySelectorAll('.map__filters select');
   window.mapFiltersSelect = mapFiltersSelect;
+
+  var formReset = document.querySelector('.ad-form__reset');
+
+  document.querySelector('.ad-form__submit').setAttribute('disabled', 'disabled');
 
   var bottomSelectedType = document.querySelector('.ad-form__bottom-type');
 
   var adFormElementPriceForNight = document.querySelector('.ad-form__element-price-for-night');
-
+  adFormElementPriceForNight.placeholder = 'Больше 1000 и меньше 5000';
   var adFormElementPriceForNightPlaceHolderValue = adFormElementPriceForNight.placeholder;
 
   var roomNumber = document.querySelector('#room_number');
@@ -52,17 +62,36 @@
 
   window.mapFiltersInputs = mapFiltersInputs;
 
-  window.disabledAfterSend = function (arr1, arr2, arr3, arr4, arr5, arr6) {
-    for (var z = 0; z < arr1.length; z++) {
-      arr1[z].setAttribute('disabled', 'disabled');
+  // функция блокировки формы после отправки данных
+  window.disabledAfterSend = function (filtersSelect, textAreas, formInputs, formSelects, topMapFiltersInputs, pins) {
+
+    for (var z = 0; z < filtersSelect.length; z++) {
+      filtersSelect[z].setAttribute('disabled', 'disabled');
     }
+
+    for (var zz = 0; zz < textAreas.length; zz++) {
+      textAreas[zz].setAttribute('disabled', 'disabled');
+    }
+
+    for (var zk = 0; zk < formInputs.length; zk++) {
+      formInputs[zk].setAttribute('disabled', 'disabled');
+    }
+
+    for (var zn = 0; zn < formSelects.length; zn++) {
+      formSelects[zn].setAttribute('disabled', 'disabled');
+    }
+
+    for (var zy = 0; zy < topMapFiltersInputs.length; zy++) {
+      topMapFiltersInputs[zy].setAttribute('disabled', 'disabled');
+    }
+
     formTitle.value = '';
     formTitle.setAttribute('disabled', 'disabled');
-
+    document.querySelector('.ad-form__submit').setAttribute('disabled', 'disabled');
     window.returnintodefault();
 
-    for (var k = 0; k < arr6.length; k++) {
-      arr6[k].remove();
+    for (var k = 0; k < pins.length; k++) {
+      pins[k].remove();
     }
     var card = document.querySelector('.map__card');
     if (card !== null) {
@@ -70,8 +99,35 @@
     }
     document.querySelector('.map').classList.add('map--faded');
     adForm.classList.add('ad-form--disabled');
+    document.querySelector('.ad-form__submit').removeAttribute('disabled');
     return true;
   };
+  // Обработчки на кнопку ресет
+
+  var removeButtonClick = formReset.addEventListener('click', function () {
+
+    for (var z = 0; z < window.adFormInputs.length; z++) {
+      window.adFormInputs[z].setAttribute('disabled', 'disabled');
+    }
+    formTitle.value = '';
+    formTitle.setAttribute('disabled', 'disabled');
+    document.querySelector('.ad-form__submit').setAttribute('disabled', 'disabled');
+    window.returnintodefault();
+
+    for (var k = 0; k < window.mapPins.length; k++) {
+      window.mapPins[k].remove();
+    }
+    var card = document.querySelector('.map__card');
+    if (card !== null) {
+      card.remove();
+    }
+
+    document.querySelector('.map').classList.add('map--faded');
+
+    adForm.classList.add('ad-form--disabled');
+    formReset.setAttribute('disabled', 'disabled');
+    formReset.removeEventListener('click', removeButtonClick);
+  });
 
   var adForm = document.querySelector('.ad-form');
   window.adForm = adForm;
@@ -264,5 +320,4 @@
     }
 
   });
-
 })();

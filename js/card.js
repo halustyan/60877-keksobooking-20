@@ -8,15 +8,15 @@
   window.cardTemplate = cardTemplate;
   var newCardElement = cardTemplate.cloneNode(true);
 
-  window.renderCards = function (obj) {
-    newCardElement.querySelector('.popup__title').textContent = obj.offer.title;
-    newCardElement.querySelector('.popup__text--address').textContent = obj.offer.address;
-    newCardElement.querySelector('.popup__text--price').textContent = obj.offer.price + '₽/ночь';
-    newCardElement.querySelector('.popup__type').textContent = obj.offer.type;
-    newCardElement.querySelector('.popup__text--capacity').textContent = obj.offer.rooms + ' комнаты для ' + obj.offer.guests + ' гостей';
-    newCardElement.querySelector('.popup__text--time').textContent = 'Заезд после ' + obj.offer.checkin + ', выезд до ' + obj.offer.checkout;
-    newCardElement.querySelector('.popup__description').textContent = obj.offer.description;
-    newCardElement.querySelector('.popup__avatar').src = obj.author.avatar;
+  window.renderCards = function (dataFromServer) {
+    newCardElement.querySelector('.popup__title').textContent = dataFromServer.offer.title;
+    newCardElement.querySelector('.popup__text--address').textContent = dataFromServer.offer.address;
+    newCardElement.querySelector('.popup__text--price').textContent = dataFromServer.offer.price + '₽/ночь';
+    newCardElement.querySelector('.popup__type').textContent = dataFromServer.offer.type;
+    newCardElement.querySelector('.popup__text--capacity').textContent = dataFromServer.offer.rooms + ' комнаты для ' + dataFromServer.offer.guests + ' гостей';
+    newCardElement.querySelector('.popup__text--time').textContent = 'Заезд после ' + dataFromServer.offer.checkin + ', выезд до ' + dataFromServer.offer.checkout;
+    newCardElement.querySelector('.popup__description').textContent = dataFromServer.offer.description;
+    newCardElement.querySelector('.popup__avatar').src = dataFromServer.author.avatar;
 
     var fragmentCard = document.createDocumentFragment();
     fragmentCard.appendChild(newCardElement);
@@ -24,7 +24,7 @@
 
     var photoElement = document.querySelector('.popup__photos');
 
-    var photoArray = obj.offer.photos;
+    var photoArray = dataFromServer.offer.photos;
     window.photoArray = photoArray;
     var photoTemplate = document.querySelector('#card').content.querySelector('.popup__photo');
 
@@ -32,7 +32,7 @@
 
     var fragmentPhoto = document.createDocumentFragment();
 
-    var features = obj.offer.features;
+    var features = dataFromServer.offer.features;
 
     var mapCard = document.querySelector('.map__card');
     mapCard.classList.add('map__pin--active');
@@ -40,24 +40,29 @@
     var createListFeaturesElement = function () {
 
       for (var f = 0; f < features.length; f++) {
-
+        var conditioner = 'conditioner';
+        var washer = 'washer';
+        var wifi = 'wifi';
+        var dishwasher = 'dishwasher';
+        var parking = 'parking';
+        var elevator = 'elevator';
         switch (features[f]) {
-          case 'conditioner':
+          case conditioner:
             newCardElement.querySelector('.popup__feature--conditioner').style.display = 'none';
             break;
-          case 'washer':
+          case washer:
             newCardElement.querySelector('.popup__feature--washer').style.display = 'none';
             break;
-          case 'wifi':
+          case wifi:
             newCardElement.querySelector('.popup__feature--wifi').style.display = 'none';
             break;
-          case 'dishwasher':
+          case dishwasher:
             newCardElement.querySelector('.popup__feature--dishwasher').style.display = 'none';
             break;
-          case 'parking':
+          case parking:
             newCardElement.querySelector('.popup__feature--parking').style.display = 'none';
             break;
-          case 'elevator':
+          case elevator:
             newCardElement.querySelector('.popup__feature--elevator').style.display = 'none';
             break;
           default:
@@ -99,13 +104,14 @@
         document.querySelector('.map__card').remove();
       }
     });
-    document.addEventListener('keydown', function (evt) {
+    var keyDownEnterPinMainFunc = document.addEventListener('keydown', function (evt) {
       var mapCardRemove = document.querySelector('.map__card');
       if (evt.keyCode === 27) {
         if (mapCardRemove !== null) {
           document.querySelector('.map__card').remove();
         }
       }
+      document.removeEventListener('keydown', keyDownEnterPinMainFunc);
     });
 
   };

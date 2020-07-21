@@ -8,29 +8,26 @@
     main.prepend(errorTemplateClone);
     errorTemplateClone.textContent = dataerror;
     var errorDiv = document.querySelector('.error');
+
     if (dataerror === null || dataerror === undefined) {
       errorDiv.insertAdjacentHTML('afterbegin', '<p class="error__message">Ошибка загрузки объявления</p><button class="error__button">Попробовать снова</button>');
     }
-    var errorButton = document.querySelector('.error__button');
 
-    window.errorDiv = errorDiv;
-    if (errorDiv !== null) {
-
-      document.addEventListener('click', function (evt) {
-        if (evt.target === errorDiv) {
-          return;
-        }
-        errorDiv.remove();
-      });
-    }
-    errorDiv.addEventListener('click', function () {
+    var removeRemoveFunction = document.addEventListener('click', function (evt) {
+      if (evt.target !== errorDiv) {
+        return;
+      }
       errorDiv.remove();
+      document.removeEventListener('click', removeRemoveFunction);
     });
-    if (errorButton !== null) {
-      errorButton.addEventListener('click', function () {
-        errorDiv.style.display = 'none';
-      });
-    }
+
+    var removeDivError = document.addEventListener('keydown', function (evt) {
+      if (evt.keyCode === 27) {
+        document.querySelector('.error').remove();
+      }
+      document.removeEventListener('keydown', removeDivError);
+    });
+
     return true;
   };
 
@@ -45,12 +42,21 @@
       successDiv.insertAdjacentHTML('afterbegin', '<p class="success__message">Ваше объявление<br>успешно размещено!</p>');
     }
 
-    document.addEventListener('click', function (evt) {
+    var removeSuccessFunction = document.addEventListener('click', function (evt) {
       if (evt.target !== successDiv) {
         return;
       }
       successDiv.remove();
+      document.removeEventListener('click', removeSuccessFunction);
     });
+
+    var removeSuccessDiv = document.addEventListener('keydown', function (evt) {
+      if (evt.keyCode === 27) {
+        document.querySelector('.success').remove();
+      }
+      document.removeEventListener('keydown', removeSuccessDiv);
+    });
+
     return true;
   };
 })();

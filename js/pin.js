@@ -65,7 +65,7 @@
 
     window.renderPins(data);
     removeDisabled();
-
+    document.querySelector('.ad-form__submit').removeAttribute('disabled');
   };
 
   window.onLoad = function (data, onError, onSuccess) {
@@ -89,6 +89,6 @@
       var data = window.load.data;
       window.onMouseUpRenderPins(data);
     }
-  });
 
+  });
 })();

@@ -6,7 +6,12 @@
   var housingRooms = document.querySelector('#housing-rooms');
   var housingGuests = document.querySelector('#housing-guests');
   var filtersForm = document.querySelector('.map__filters');
-
+  var any = 'any';
+  var middle = 'middle';
+  var low = 'low';
+  var high = 'high';
+  var tenThousand = 10000;
+  var fiftyThousand = 50000;
   var renderFilteredPins = function (data) {
 
     var allPins = document.querySelectorAll('.map__pin:not(.map__pin--main)');
@@ -29,53 +34,53 @@
     var housingGuestsValue = housingGuests.value;
     var filteredData;
 
-    var filteredItemsHousingType = data.filter(function (item, i, arr) {
-      if (housingTypeValue === 'any') {
-        return arr;
+    var filteredItemsHousingType = data.filter(function (filteredElem, indexOfElem, arrayElem) {
+      if (housingTypeValue === any) {
+        return arrayElem;
       } else {
-        return item.offer.type === housingTypeValue;
+        return filteredElem.offer.type === housingTypeValue;
       }
     });
 
     filteredData = filteredItemsHousingType;
 
-    var filteredItemsHousingPrice = filteredData.filter(function (item, i, arr) {
-      if (housingPriceValue === 'middle') {
-        return item.offer.price >= 10000 && item.offer.price <= 50000;
-      } else if (housingPriceValue === 'low') {
-        return item.offer.price < 10000;
-      } else if (housingPriceValue === 'high') {
-        return item.offer.price > 50000;
+    var filteredItemsHousingPrice = filteredData.filter(function (filteredElem, indexOfElem, arrayElem) {
+      if (housingPriceValue === middle) {
+        return filteredElem.offer.price >= tenThousand && filteredElem.offer.price <= fiftyThousand;
+      } else if (housingPriceValue === low) {
+        return filteredElem.offer.price < tenThousand;
+      } else if (housingPriceValue === high) {
+        return filteredElem.offer.price > fiftyThousand;
       } else {
-        return arr;
+        return arrayElem;
       }
     });
 
     filteredData = filteredItemsHousingPrice;
 
-    var filteredItemsHousingRooms = filteredData.filter(function (item, i, arr) {
+    var filteredItemsHousingRooms = filteredData.filter(function (filteredElem, indexOfElem, arrayElem) {
       if (housingRoomsValue === '1') {
-        return item.offer.rooms === 1;
+        return filteredElem.offer.rooms === 1;
       } else if (housingRoomsValue === '2') {
-        return item.offer.rooms === 2;
+        return filteredElem.offer.rooms === 2;
       } else if (housingRoomsValue === '3') {
-        return item.offer.rooms === 3;
+        return filteredElem.offer.rooms === 3;
       } else {
-        return arr;
+        return arrayElem;
       }
     });
 
     filteredData = filteredItemsHousingRooms;
 
-    var filteredItemHousingGuests = filteredData.filter(function (item, i, arr) {
+    var filteredItemHousingGuests = filteredData.filter(function (filteredElem, indexOfElem, arrayElem) {
       if (housingGuestsValue === '2') {
-        return item.offer.guests === 2;
+        return filteredElem.offer.guests === 2;
       } else if (housingGuestsValue === '1') {
-        return item.offer.guests === 1;
+        return filteredElem.offer.guests === 1;
       } else if (housingGuestsValue === '0') {
-        return item.offer.guests === 0;
+        return filteredElem.offer.guests === 0;
       } else {
-        return arr;
+        return arrayElem;
       }
     });
 
@@ -95,8 +100,8 @@
         if (i !== 0) {
           filteredData = arr;
         }
-        var arr = filteredData.filter(function (el) {
-          return el.offer.features.includes(featuresFilterFunction[i]);
+        var arr = filteredData.filter(function (filteredElement) {
+          return filteredElement.offer.features.includes(featuresFilterFunction[i]);
         });
       }
       return arr;

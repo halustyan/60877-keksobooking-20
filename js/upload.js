@@ -6,11 +6,13 @@
     var xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
     xhr.addEventListener('load', function () {
-      window.onSuccess();
+      if (xhr.status === 200) {
+        window.onSuccess();
+      } else {
+        window.onError();
+      }
     });
-    if (xhr.status === 400) {
-      window.onError();
-    }
+
     xhr.open('POST', URL);
     xhr.send(data);
   };
@@ -21,6 +23,7 @@
     window.upload(formData);
     window.disabledAfterSend(window.mapFiltersSelect, window.adFormTextareas, window.adFormInputs, window.adFormSelects, window.mapFiltersInputs, window.mapPins);
     window.mapPin.addEventListener('mousedown', window.onMouseUpRenderPins);
+
   });
 
 })();

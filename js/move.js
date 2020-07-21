@@ -2,8 +2,15 @@
 
 (function () {
   var mapPinMain = document.querySelector('.map__pin--main');
+
   var placemarkAddress = document.querySelector('#address');
+
   placemarkAddress.value = '570, 375';
+
+  var widthPin = 62;
+
+  var heightAfterElem = 22;
+
   var activeMode = false;
 
   mapPinMain.addEventListener('mousedown', function (evt) {
@@ -31,39 +38,38 @@
         y: moveEvt.clientY
       };
 
-      if ((mapPinMain.offsetLeft - shift.x) < -32) {
+      if ((mapPinMain.offsetLeft - shift.x) < 0) {
         var flag1 = true;
       }
-      if ((mapPinMain.offsetLeft - shift.x) > 1168) {
+      if ((mapPinMain.offsetLeft - shift.x) > 1135) {
         var flag2 = true;
       }
-      if ((mapPinMain.offsetTop - shift.y) < 61) {
+      if ((mapPinMain.offsetTop - shift.y) < 153) {
         var flag3 = true;
       }
-      if ((mapPinMain.offsetTop - shift.y) > 625) {
+      if ((mapPinMain.offsetTop - shift.y) > 600) {
         var flag4 = true;
       }
 
       if (flag1) {
-        mapPinMain.style.left = -32 + 'px';
+        mapPinMain.style.left = 0 + 'px';
       }
       if (flag2) {
-        mapPinMain.style.left = 1168 + 'px';
+        mapPinMain.style.left = 1135 + 'px';
       }
       if (flag3) {
-        mapPinMain.style.top = 61 + 'px';
+        mapPinMain.style.top = 153 + 'px';
       }
       if (flag4) {
-        mapPinMain.style.top = 625 + 'px';
+        mapPinMain.style.top = 600 + 'px';
       }
       if (!flag1 && !flag2 && !flag3 && !flag4) {
         mapPinMain.style.top = (mapPinMain.offsetTop - shift.y) + 'px';
         mapPinMain.style.left = (mapPinMain.offsetLeft - shift.x) + 'px';
       }
 
-      var pinX = (mapPinMain.offsetLeft - shift.x);
-      var pinY = (mapPinMain.offsetTop - shift.y);
-
+      var pinX = ((mapPinMain.offsetLeft - shift.x) + (widthPin / 2));
+      var pinY = ((mapPinMain.offsetTop - shift.y) - heightAfterElem);
       placemarkAddress.value = pinX + ', ' + pinY;
     };
 
