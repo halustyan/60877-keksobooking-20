@@ -104,8 +104,10 @@
   };
   // Обработчки на кнопку ресет
 
-  var removeButtonClick = formReset.addEventListener('click', function () {
-
+  /*var removeButtonClick = document.addEventListener('click', function (evt) {
+    if (evt.target !== formReset ) {
+      return;
+    }
     for (var z = 0; z < window.adFormInputs.length; z++) {
       window.adFormInputs[z].setAttribute('disabled', 'disabled');
     }
@@ -126,8 +128,9 @@
 
     adForm.classList.add('ad-form--disabled');
     formReset.setAttribute('disabled', 'disabled');
-    formReset.removeEventListener('click', removeButtonClick);
-  });
+    document.removeEventListener('click', removeButtonClick);
+  });*/
+
 
   var adForm = document.querySelector('.ad-form');
   window.adForm = adForm;
