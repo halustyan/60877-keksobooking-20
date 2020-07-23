@@ -3,6 +3,8 @@
 (function () {
   var mapPinMain = document.querySelector('.map__pin--main');
 
+  window.mapPinMain = mapPinMain;
+
   var placemarkAddress = document.querySelector('#address');
 
   placemarkAddress.value = '570, 375';

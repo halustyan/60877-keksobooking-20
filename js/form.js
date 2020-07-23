@@ -39,6 +39,11 @@
 
   var address = document.querySelector('.ad-form__element--address');
 
+  var timeIn = document.querySelector('#timein');
+  window.timeIn = timeIn;
+  var timeOut = document.querySelector('#timeout');
+  window.timeOut = timeOut;
+
   window.returnintodefault = function () {
 
     var bottomFilters = document.querySelectorAll('.features .feature__checkbox');
@@ -64,6 +69,11 @@
 
   // функция блокировки формы после отправки данных
   window.disabledAfterSend = function (filtersSelect, textAreas, formInputs, formSelects, topMapFiltersInputs, pins) {
+
+    mapPinMain.style.left = 570 + 'px';
+    mapPinMain.style.top = 375 + 'px';
+
+    timeOut.value = "12:00";
 
     for (var z = 0; z < filtersSelect.length; z++) {
       filtersSelect[z].setAttribute('disabled', 'disabled');
@@ -129,6 +139,7 @@
     adForm.classList.add('ad-form--disabled');
     formReset.setAttribute('disabled', 'disabled');
     document.removeEventListener('click', removeButtonClick);
+    return true;
   });
 
   var adForm = document.querySelector('.ad-form');
@@ -242,10 +253,6 @@
     }
   });
 
-  var timeIn = document.querySelector('#timein');
-  window.timeIn = timeIn;
-  var timeOut = document.querySelector('#timeout');
-  window.timeOut = timeOut;
   timeIn.addEventListener('change', function () {
     if (timeIn.value === '12:00') {
       timeOut.value = '12:00';
