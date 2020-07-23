@@ -102,10 +102,10 @@
     document.querySelector('.ad-form__submit').removeAttribute('disabled');
     return true;
   };
-  // Обработчки на кнопку ресет
 
-  /*var removeButtonClick = document.addEventListener('click', function (evt) {
-    if (evt.target !== formReset ) {
+  // Обработчки на кнопку ресет
+  var removeButtonClick = document.addEventListener('click', function (evt) {
+    if (evt.target !== formReset) {
       return;
     }
     for (var z = 0; z < window.adFormInputs.length; z++) {
@@ -129,8 +129,7 @@
     adForm.classList.add('ad-form--disabled');
     formReset.setAttribute('disabled', 'disabled');
     document.removeEventListener('click', removeButtonClick);
-  });*/
-
+  });
 
   var adForm = document.querySelector('.ad-form');
   window.adForm = adForm;

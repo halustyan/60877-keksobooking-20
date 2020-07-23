@@ -5,7 +5,6 @@
     var errorTemplate = document.querySelector('#error').content.querySelector('.error');
     var errorTemplateClone = errorTemplate.cloneNode(true);
     var main = document.querySelector('main');
-S
     main.prepend(errorTemplateClone);
     errorTemplateClone.textContent = dataerror;
     var errorDiv = document.querySelector('.error');
@@ -22,26 +21,25 @@ S
       document.removeEventListener('click', removeRemoveFunction);
     });
 
-    var removeDivError = function() {
-      if (document.querySelector('.error__button') !==null) {
-        var errorDivRemoveFunc = document.querySelector('.error__button').addEventListener('click', function(){
+    var removeDivError = function () {
+      if (document.querySelector('.error__button') !== null) {
+        var errorDivRemoveFunc = document.querySelector('.error__button').addEventListener('click', function () {
           document.querySelector('.error').remove();
           document.querySelector('.error__button').removeEventListener('click', errorDivRemoveFunc);
         });
-      }
-      else {
+      } else {
         document.querySelector('.error').remove();
       }
       return true;
-    }
-    removeDivError ();
+    };
+    removeDivError();
 
 
-    var removeDivError = document.addEventListener('keydown', function (evt) {
+    var removeDivErrorEsc = document.addEventListener('keydown', function (evt) {
       if (evt.keyCode === 27) {
         document.querySelector('.error').remove();
       }
-      document.removeEventListener('keydown', removeDivError);
+      document.removeEventListener('keydown', removeDivErrorEsc);
     });
 
     return true;
