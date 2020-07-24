@@ -6,7 +6,6 @@
   var fileChooser = document.querySelector('.ad-form-header__input');
   var preview = document.querySelector('.ad-form-header__preview img');
 
-  // Первая картинка
   fileChooser.addEventListener('change', function () {
     var file = fileChooser.files[0];
     var fileName = file.name.toLowerCase();

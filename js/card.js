@@ -35,6 +35,7 @@
     var features = dataFromServer.offer.features;
 
     var mapCard = document.querySelector('.map__card');
+    window.mapCard = mapCard;
     mapCard.classList.add('map__pin--active');
 
     var createListFeaturesElement = function () {

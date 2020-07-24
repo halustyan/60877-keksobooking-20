@@ -21,16 +21,16 @@
   var mapFiltersSelect = document.querySelectorAll('.map__filters select');
   window.mapFiltersSelect = mapFiltersSelect;
 
-  var formReset = document.querySelector('.ad-form__reset');
-
   document.querySelector('.ad-form__submit').setAttribute('disabled', 'disabled');
 
   var bottomSelectedType = document.querySelector('.ad-form__bottom-type');
 
   var adFormElementPriceForNight = document.querySelector('.ad-form__element-price-for-night');
-  adFormElementPriceForNight.placeholder = 'Больше 1000 и меньше 5000';
-  var adFormElementPriceForNightPlaceHolderValue = adFormElementPriceForNight.placeholder;
 
+  adFormElementPriceForNight.placeholder = 'Больше 1000 и меньше 5000';
+
+  var adFormElementPriceValue = adFormElementPriceForNight.placeholder;
+  window.adFormElementPriceValue = adFormElementPriceValue;
   var roomNumber = document.querySelector('#room_number');
 
   var deskription = document.querySelector('#description');
@@ -53,7 +53,7 @@
     }
 
     bottomSelectedType.value = 'flat';
-    adFormElementPriceForNight.value = adFormElementPriceForNightPlaceHolderValue;
+    adFormElementPriceForNight.value = adFormElementPriceValue;
     roomNumber.value = '1';
     deskription.value = deskriptionPlaceholder;
     address.value = '570, 375';
@@ -109,15 +109,14 @@
     }
     document.querySelector('.map').classList.add('map--faded');
     adForm.classList.add('ad-form--disabled');
-    document.querySelector('.ad-form__submit').removeAttribute('disabled');
+
     return true;
   };
-
+  var formReset = document.querySelector('.ad-form__reset');
+  window.formReset = formReset;
   // Обработчки на кнопку ресет
-  var removeButtonClick = document.addEventListener('click', function (evt) {
-    if (evt.target !== formReset) {
-      return;
-    }
+  var removeButtonClick = function () {
+
     for (var z = 0; z < window.adFormInputs.length; z++) {
       window.adFormInputs[z].setAttribute('disabled', 'disabled');
     }
@@ -130,6 +129,7 @@
       window.mapPins[k].remove();
     }
     var card = document.querySelector('.map__card');
+
     if (card !== null) {
       card.remove();
     }
@@ -137,9 +137,10 @@
     document.querySelector('.map').classList.add('map--faded');
 
     adForm.classList.add('ad-form--disabled');
-    formReset.setAttribute('disabled', 'disabled');
-    document.removeEventListener('click', removeButtonClick);
-  });
+    formReset.removeEventListener('click', window.removeButtonClick);
+    window.mapPin.addEventListener('mousedown', window.onMouseUpRenderPins);
+  };
+  formReset.addEventListener('click', removeButtonClick);
 
   var adForm = document.querySelector('.ad-form');
   window.adForm = adForm;
@@ -328,4 +329,5 @@
     }
 
   });
+
 })();

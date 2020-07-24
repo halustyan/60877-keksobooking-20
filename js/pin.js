@@ -58,14 +58,18 @@
     for (var r = 0; r < window.adFormTextareas.length; r++) {
       window.adFormTextareas[r].removeAttribute('disabled');
     }
+    document.querySelector('.ad-form__submit').removeAttribute('disabled');
     return true;
   };
 
   window.activatePage = function (data) {
 
     window.renderPins(data);
+
     removeDisabled();
     document.querySelector('.ad-form__submit').removeAttribute('disabled');
+    window.formReset.removeAttribute('disabled');
+
   };
 
   window.onLoad = function (data, onError, onSuccess) {
@@ -88,6 +92,7 @@
     if (evt.keyCode === 13) {
       var data = window.load.data;
       window.onMouseUpRenderPins(data);
+      window.formReset.addEventListener('click', window.removeButtonClick);
     }
 
   });
