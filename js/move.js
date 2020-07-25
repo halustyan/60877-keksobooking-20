@@ -6,7 +6,7 @@
   window.mapPinMain = mapPinMain;
 
   var placemarkAddress = document.querySelector('#address');
-
+  window.placemarkAddress = placemarkAddress;
   placemarkAddress.value = '570, 375';
 
   var widthPin = 62;

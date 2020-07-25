@@ -114,7 +114,7 @@
   };
   var formReset = document.querySelector('.ad-form__reset');
   window.formReset = formReset;
-  // Обработчки на кнопку ресет
+
   var removeButtonClick = function () {
 
     for (var z = 0; z < window.adFormInputs.length; z++) {
@@ -137,6 +137,8 @@
     document.querySelector('.map').classList.add('map--faded');
 
     adForm.classList.add('ad-form--disabled');
+    formReset.setAttribute('disabled', 'disabled');
+    placemarkAddress.value = '570, 375';
     formReset.removeEventListener('click', window.removeButtonClick);
     window.mapPin.addEventListener('mousedown', window.onMouseUpRenderPins);
   };

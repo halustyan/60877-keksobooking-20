@@ -69,7 +69,7 @@
     removeDisabled();
     document.querySelector('.ad-form__submit').removeAttribute('disabled');
     window.formReset.removeAttribute('disabled');
-
+    placemarkAddress.value = '570, 375';
   };
 
   window.onLoad = function (data, onError, onSuccess) {
