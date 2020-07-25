@@ -69,7 +69,7 @@
     removeDisabled();
     document.querySelector('.ad-form__submit').removeAttribute('disabled');
     window.formReset.removeAttribute('disabled');
-    placemarkAddress.value = '570, 375';
+    window.placemarkAddress.value = '570, 375';
   };
 
   window.onLoad = function (data, onError, onSuccess) {
@@ -78,6 +78,7 @@
   };
 
   window.onMouseUpRenderPins = function (data) {
+    formReset.removeAttribute('disabled');
     data = window.load.data;
     if (typeof window.load === 'function') {
       window.load(window.onLoad, window.onError);

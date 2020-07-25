@@ -138,7 +138,7 @@
 
     adForm.classList.add('ad-form--disabled');
     formReset.setAttribute('disabled', 'disabled');
-    placemarkAddress.value = '570, 375';
+    window.placemarkAddress.value = '570, 375';
     formReset.removeEventListener('click', window.removeButtonClick);
     window.mapPin.addEventListener('mousedown', window.onMouseUpRenderPins);
   };
