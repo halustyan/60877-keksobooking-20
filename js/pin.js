@@ -78,7 +78,7 @@
   };
 
   window.onMouseUpRenderPins = function (data) {
-    formReset.removeAttribute('disabled');
+    window.formReset.removeAttribute('disabled');
     data = window.load.data;
     if (typeof window.load === 'function') {
       window.load(window.onLoad, window.onError);
