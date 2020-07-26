@@ -36,7 +36,6 @@
 
     var mapCard = document.querySelector('.map__card');
     window.mapCard = mapCard;
-    mapCard.classList.add('map__pin--active');
 
     var createListFeaturesElement = function () {
 
@@ -97,23 +96,29 @@
     photoElement.appendChild(fragmentPhoto);
     var popupclose = document.querySelector('.map').querySelector('.map__card').querySelector('.popup__close');
 
-    popupclose.addEventListener('click', function (evt) {
+    var popUpCloseFunction = function (evt) {
       if (evt.key === 'Enter') {
         document.querySelector('.map__card').remove();
       }
       if (document.querySelector('.map__card')) {
         document.querySelector('.map__card').remove();
       }
-    });
-    var keyDownEnterPinMainFunc = document.addEventListener('keydown', function (evt) {
+      popupclose.removeEventListener('click', popUpCloseFunction);
+    };
+    popupclose.addEventListener('click', popUpCloseFunction);
+
+
+    var removeEnterFunction = function (evt) {
       var mapCardRemove = document.querySelector('.map__card');
       if (evt.keyCode === 27) {
         if (mapCardRemove !== null) {
           document.querySelector('.map__card').remove();
         }
       }
-      document.removeEventListener('keydown', keyDownEnterPinMainFunc);
-    });
+      document.removeEventListener('keydown', removeEnterFunction);
+    };
+
+    document.addEventListener('keydown', removeEnterFunction);
 
   };
 
