@@ -103,10 +103,9 @@
       if (document.querySelector('.map__card')) {
         document.querySelector('.map__card').remove();
       }
-      popupclose.removeEventListener('click', popUpCloseFunction);
     };
     popupclose.addEventListener('click', popUpCloseFunction);
-
+    popupclose.removeEventListener('click', popUpCloseFunction);
 
     var removeEnterFunction = function (evt) {
       var mapCardRemove = document.querySelector('.map__card');
@@ -115,11 +114,9 @@
           document.querySelector('.map__card').remove();
         }
       }
-      document.removeEventListener('keydown', removeEnterFunction);
     };
-
     document.addEventListener('keydown', removeEnterFunction);
-
+    document.removeEventListener('keydown', removeEnterFunction);
   };
 
 })();

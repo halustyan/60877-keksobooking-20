@@ -138,8 +138,8 @@
 
     adForm.classList.add('ad-form--disabled');
     formReset.setAttribute('disabled', 'disabled');
-    window.mapPinMain.style.left = window.pinX + 'px';
-    window.mapPinMain.style.top = window.pinY + 'px';
+    window.mapPinMain.style.left = 570 + 'px';
+    window.mapPinMain.style.top = 375 + 'px';
     window.placemarkAddress.value = window.pinY + '  ,  ' + window.pinX;
     formReset.removeEventListener('click', window.removeButtonClick);
     window.mapPin.addEventListener('mousedown', window.onMouseUpRenderPins);
