@@ -67,22 +67,25 @@
   };
 
   var updateOffers = function (offers) {
-    return offers.slice().filter(function (adv) {
-      return filterHousingType(adv) &&
+    var arr = [];
+    offers.slice().map(function (adv) {
+      if (arr.length >= 5) {
+        return false;
+      }
+      if (filterHousingType(adv) &&
       filterHousingPrice(adv) &&
       filterHousingRooms(adv) &&
       filterHousingGuests(adv) &&
-      filterHousingFeatures(adv);
+      filterHousingFeatures(adv)) {
+        arr.push(adv);
+      }
+      return true;
     });
+    return arr;
   };
 
   var onFormFilterChange = window.debounce(function () {
     var filteredData = updateOffers(window.load.data);
-    if (filteredData.length > 5) {
-      filteredData = filteredData.slice(0, 5);
-    } else {
-      filteredData = filteredData;
-    }
     renderFilteredPins(filteredData);
   });
 

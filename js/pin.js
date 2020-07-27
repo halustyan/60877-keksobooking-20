@@ -38,7 +38,7 @@
 
   };
   mapPin.style.left = '570px';
-  mapPin.style.top = '375px';
+  mapPin.style.top = '365px';
 
   var removeDisabled = function () {
     window.map.classList.remove('map--faded');
@@ -69,7 +69,7 @@
     removeDisabled();
     document.querySelector('.ad-form__submit').removeAttribute('disabled');
     window.formReset.removeAttribute('disabled');
-    window.placemarkAddress.value = '570, 375';
+
   };
 
   window.onLoad = function (data, onError, onSuccess) {

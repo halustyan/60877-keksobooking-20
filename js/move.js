@@ -9,15 +9,19 @@
 
   window.placemarkAddress = placemarkAddress;
 
-  var widthPin = mapPinMain.offsetWidth;
-
-  var heightPin = mapPinMain.offsetHeight;
-
-  var heightAfterElem = 22;
-
-  var heightOfThePin = heightAfterElem + heightPin;
-
   var activeMode = false;
+
+  var Y_MIN = 130;
+  var Y_MAX = 630;
+  var X_MIN = 0;
+  var X_MAX = 1200;
+  var MAIN_ACTIVE_PIN_HEIGHT = 77;
+  var mapEdges = {
+    top: Y_MIN - MAIN_ACTIVE_PIN_HEIGHT,
+    bottom: Y_MAX - MAIN_ACTIVE_PIN_HEIGHT,
+    left: X_MIN - Math.ceil(mapPinMain.offsetWidth / 2),
+    right: X_MAX - Math.ceil(mapPinMain.offsetWidth / 2)
+  };
 
   mapPinMain.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
@@ -43,45 +47,26 @@
         x: moveEvt.clientX,
         y: moveEvt.clientY
       };
-
-      if ((mapPinMain.offsetLeft - shift.x) < -31) {
-        var flag1 = true;
-      }
-      if ((mapPinMain.offsetLeft - shift.x) > 1168) {
-        var flag2 = true;
-      }
-      if ((mapPinMain.offsetTop - shift.y) < 153) {
-        var flag3 = true;
-      }
-      if ((mapPinMain.offsetTop - shift.y) > 600) {
-        var flag4 = true;
-      }
-
-      if (flag1) {
-        mapPinMain.style.left = -31 + 'px';
-      }
-      if (flag2) {
-        mapPinMain.style.left = 1168 + 'px';
-      }
-      if (flag3) {
-        mapPinMain.style.top = 153 + 'px';
-      }
-      if (flag4) {
-        mapPinMain.style.top = 600 + 'px';
-      }
-      if (!flag1 && !flag2 && !flag3 && !flag4) {
-        mapPinMain.style.top = (mapPinMain.offsetTop - shift.y) + 'px';
-        mapPinMain.style.left = (mapPinMain.offsetLeft - shift.x) + 'px';
+      if (mapPinMain.offsetLeft - shift.x < mapEdges.left) {
+        mapPinMain.style.left = mapEdges.left + 'px';
+      } else if (mapPinMain.offsetLeft - shift.x > mapEdges.right) {
+        mapPinMain.style.left = mapEdges.right + 'px';
+      } else if (mapPinMain.offsetTop - shift.y < mapEdges.top) {
+        mapPinMain.style.top = mapEdges.top + 'px';
+      } else if (mapPinMain.offsetTop - shift.y > mapEdges.bottom) {
+        mapPinMain.style.top = mapEdges.bottom + 'px';
+      } else {
+        mapPinMain.style.top = mapPinMain.offsetTop - shift.y + 'px';
+        mapPinMain.style.left = mapPinMain.offsetLeft - shift.x + 'px';
       }
 
-      var pinX = ((mapPinMain.offsetLeft - shift.x) + (widthPin / 2));
+      var setActiveAddress = function () {
+        var coordinateX = Math.round(mapPinMain.offsetLeft + mapPinMain.offsetWidth / 2);
+        var coordinateY = Math.round(mapPinMain.offsetTop + MAIN_ACTIVE_PIN_HEIGHT);
+        placemarkAddress.value = coordinateX + ', ' + coordinateY;
+      };
+      setActiveAddress();
 
-      window.pinX = pinX;
-
-      var pinY = ((mapPinMain.offsetTop - shift.y) - heightOfThePin);
-      window.pinY = pinY;
-
-      placemarkAddress.value = Math.floor(pinX) + ', ' + Math.floor(pinY);
     };
 
     var onMouseUp = function (upEvt) {
