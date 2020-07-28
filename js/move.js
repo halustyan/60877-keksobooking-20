@@ -15,7 +15,7 @@
   var Y_MAX = 630;
   var X_MIN = 0;
   var X_MAX = 1200;
-  var MAIN_ACTIVE_PIN_HEIGHT = 77;
+  var MAIN_ACTIVE_PIN_HEIGHT = document.querySelector('.map__pin--main img').offsetHeight + 22;
   var mapEdges = {
     top: Y_MIN - MAIN_ACTIVE_PIN_HEIGHT,
     bottom: Y_MAX - MAIN_ACTIVE_PIN_HEIGHT,
