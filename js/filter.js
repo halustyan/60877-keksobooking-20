@@ -68,19 +68,22 @@
 
   var updateOffers = function (offers) {
     var arr = [];
-    offers.slice().map(function (adv) {
+    var filteredOffers = offers.slice();
+
+    for (var i = 0; i < filteredOffers.length; i++) {
       if (arr.length >= 5) {
-        return false;
+        // выход из цикла
+        break;
       }
-      if (filterHousingType(adv) &&
-      filterHousingPrice(adv) &&
-      filterHousingRooms(adv) &&
-      filterHousingGuests(adv) &&
-      filterHousingFeatures(adv)) {
-        arr.push(adv);
+
+      if (filterHousingType(filteredOffers[i]) &&
+      filterHousingPrice(filteredOffers[i]) &&
+      filterHousingRooms(filteredOffers[i]) &&
+      filterHousingGuests(filteredOffers[i]) &&
+      filterHousingFeatures(filteredOffers[i])) {
+        arr.push(filteredOffers[i]);
       }
-      return true;
-    });
+    }
     return arr;
   };
 
